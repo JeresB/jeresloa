@@ -4,12 +4,12 @@ import { getFirestore } from 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC0h88a-oFL-XOM1FwEfsq8XyAho8Z1y78",
-  authDomain: "jeresloa-b2f08.firebaseapp.com",
-  projectId: "jeresloa-b2f08",
-  storageBucket: "jeresloa-b2f08.firebasestorage.app",
-  messagingSenderId: "209256722888",
-  appId: "1:209256722888:web:c09f559e343f7176a610fd"
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_API_ID
 }
 
 // Initialize Firebase

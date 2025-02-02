@@ -112,7 +112,9 @@ export default function Fatember() {
                     input.checked = false;
                 });
 
-                setFateEmberDrawerOpen(!fateEmberDrawerOpen)
+                setFateEmberDrawerOpen(!fateEmberDrawerOpen);
+
+                updateFateEmbers('refresh', null);
             }
         } catch (err) {
             console.log('Failed to set data: ', err.message)

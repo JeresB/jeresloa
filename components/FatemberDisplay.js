@@ -344,10 +344,12 @@ export default function FatemberDisplay(props) {
     const updateFateEmbers = (type, date) => {
         if (type == 'start') {
             setStartDate(date);
-            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(endDate)) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(date) && new Date(t.date) <= new Date(endDate)));
+            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(date) && new Date(t.date) <= new Date(endDate)) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(date) && new Date(t.date) <= new Date(endDate)));
         } else if (type == 'end') {
             setEndDate(date);
-            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(endDate)) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(date)));
+            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(date)) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(date)));
+        } else {
+            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(endDate)) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(endDate)));
         }
     }
 
