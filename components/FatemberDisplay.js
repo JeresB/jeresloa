@@ -1,7 +1,7 @@
 'use client'
 
 import { useAuth } from '@/context/AuthContext'
-import React from 'react'
+import React, { use, useEffect } from 'react'
 import Loading from './Loading'
 import Chart from 'chart.js/auto'
 import { Bar, Doughnut, Pie } from "react-chartjs-2";
@@ -15,8 +15,24 @@ export default function FatemberDisplay(props) {
     const { currentUser, userDataObj, setUserDataObj, commonDataObj, setCommonDataObj, loading } = useAuth()
     const [startDate, setStartDate] = useState(new Date(getLastWednesday()));
     const [endDate, setEndDate] = useState(new Date(getNextWednesday()));
-    const [fate_embers, setFateEmbers] = useState(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(endDate)) : userDataObj?.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(endDate)));
+    const [fate_embers, setFateEmbers] = useState(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))) : userDataObj?.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))));
 
+    const updateFateEmbers = (type, date) => {
+        if (type == 'start') {
+            setStartDate(date);
+            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(date) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(date) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))));
+        } else if (type == 'end') {
+            setEndDate(date);
+            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(date).setDate(date.getDate() + 1))) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(date).setDate(date.getDate() + 1))));
+        } else {
+            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))) : userDataObj?.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))));
+        }
+    }
+    
+    useEffect(() => {
+        updateFateEmbers('refresh', null);
+    }, [userDataObj]);
+    
     if (loading) {
         return <Loading />
     }
@@ -341,18 +357,6 @@ export default function FatemberDisplay(props) {
         }
     };
 
-    const updateFateEmbers = (type, date) => {
-        if (type == 'start') {
-            setStartDate(date);
-            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(date) && new Date(t.date) <= new Date(endDate)) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(date) && new Date(t.date) <= new Date(endDate)));
-        } else if (type == 'end') {
-            setEndDate(date);
-            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(date)) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(date)));
-        } else {
-            setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(endDate)) : userDataObj.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(endDate)));
-        }
-    }
-
     return (
         <div className='flex flex-col justify-center items-center h-full gap-6'>
             <div className="grid grid-cols-3 grid-rows-3 h-full min-w-[60vw]">
@@ -420,7 +424,7 @@ export default function FatemberDisplay(props) {
                     </div>
                 </div>
                 <div className='row-span-2 border-l border-r border-[#2e3643] overflow-y-scroll overflow-x-hidden'>
-                    {fate_embers?.map((fe, feIndex) => {
+                    {fate_embers?.sort((a, b) => new Date(b.date) - new Date(a.date)).map((fe, feIndex) => {
                         //console.log(fe.type);
                         //console.log(commonDataObj.fate_ember_options.find(option => option.idfateember === fe.type)?.logo);
 

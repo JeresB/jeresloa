@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
 export default function Login() {
 
@@ -42,6 +43,11 @@ export default function Login() {
                                 <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{currentUser.email}</span>
                             </div>
                             <ul className="py-2" aria-labelledby="user-menu-button">
+                                <li>
+                                    <Link href={'/roster'}>
+                                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><button>Roster</button></div>
+                                    </Link>
+                                </li>
                                 <li>
                                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><button onClick={logout}>Logout</button></a>
                                 </li>
