@@ -1155,6 +1155,113 @@ export const demo_fate_embers = [
     }
 ]
 
+export const classes = [
+    {
+        "name": "Berserker",
+        "logo": "images/class_zerk.png"
+    },
+    {
+        "name": "Destroyer",
+        "logo": "images/class_destroyer.png"
+    },
+    {
+        "name": "Gunlancer",
+        "logo": "images/class_gl.png"
+    },
+    {
+        "name": "Paladin",
+        "logo": "images/class_paladin.png"
+    },
+    {
+        "name": "Slayer",
+        "logo": "images/class_slayer.png"
+    },
+    {
+        "name": "Breaker",
+        "logo": "images/class_breaker.png"
+    },
+    {
+        "name": "Striker",
+        "logo": "images/class_striker.png"
+    },
+    {
+        "name": "Glaivier",
+        "logo": "images/class_glaivier.png"
+    },
+    {
+        "name": "Soulfist",
+        "logo": "images/class_soulfist.png"
+    },
+    {
+        "name": "Scrapper",
+        "logo": "images/class_scrapper.png"
+    },
+    {
+        "name": "Wardancer",
+        "logo": "images/class_wardancer.png"
+    },
+    {
+        "name": "Arcana",
+        "logo": "images/class_arcana.png"
+    },
+    {
+        "name": "Bard",
+        "logo": "images/class_bard.png"
+    },
+    {
+        "name": "Sorceress",
+        "logo": "images/class_sorceress.png"
+    },
+    {
+        "name": "Summoner",
+        "logo": "images/class_summoner.png"
+    },
+    {
+        "name": "Artillerist",
+        "logo": "images/class_arti.png"
+    },
+    {
+        "name": "Deadeye",
+        "logo": "images/class_deadeye.png"
+    },
+    {
+        "name": "Scouter",
+        "logo": "images/class_scouter.png"
+    },
+    {
+        "name": "Sharpshooter",
+        "logo": "images/class_ss.png"
+    },
+    {
+        "name": "Gunslinger",
+        "logo": "images/class_gs.png"
+    },
+    {
+        "name": "Deathblade",
+        "logo": "images/class_db.png"
+    },
+    {
+        "name": "Reaper",
+        "logo": "images/class_reaper.png"
+    },
+    {
+        "name": "Shadowhunter",
+        "logo": "images/class_shadowhunter.png"
+    },
+    {
+        "name": "Souleater",
+        "logo": "images/class_se.png"
+    },
+    {
+        "name": "Aeromancer",
+        "logo": "images/class_aeromancer.png"
+    },
+    {
+        "name": "Artist",
+        "logo": "images/class_artist.png"
+    }
+]
+
 export const getLastWednesday = () => {
     const today = new Date();
     const dayOfWeek = today.getDay();
