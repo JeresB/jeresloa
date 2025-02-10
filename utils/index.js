@@ -1,3 +1,5 @@
+import { format, getDay, subDays } from 'date-fns'
+
 export const demo_perso = [
     {
         "idperso": "p_roster",
@@ -1158,109 +1160,591 @@ export const demo_fate_embers = [
 export const classes = [
     {
         "name": "Berserker",
-        "logo": "images/class_zerk.png"
+        "logo": "images/class_zerk.png",
+        "type": "DPS"
     },
     {
         "name": "Destroyer",
-        "logo": "images/class_destroyer.png"
+        "logo": "images/class_destroyer.png",
+        "type": "DPS"
     },
     {
         "name": "Gunlancer",
-        "logo": "images/class_gl.png"
+        "logo": "images/class_gl.png",
+        "type": "DPS"
     },
     {
         "name": "Paladin",
-        "logo": "images/class_paladin.png"
+        "logo": "images/class_paladin.png",
+        "type": "Support"
     },
     {
         "name": "Slayer",
-        "logo": "images/class_slayer.png"
+        "logo": "images/class_slayer.png",
+        "type": "DPS"
     },
     {
         "name": "Breaker",
-        "logo": "images/class_breaker.png"
+        "logo": "images/class_breaker.png",
+        "type": "DPS"
     },
     {
         "name": "Striker",
-        "logo": "images/class_striker.png"
+        "logo": "images/class_striker.png",
+        "type": "DPS"
     },
     {
         "name": "Glaivier",
-        "logo": "images/class_glaivier.png"
+        "logo": "images/class_glaivier.png",
+        "type": "DPS"
     },
     {
         "name": "Soulfist",
-        "logo": "images/class_soulfist.png"
+        "logo": "images/class_soulfist.png",
+        "type": "DPS"
     },
     {
         "name": "Scrapper",
-        "logo": "images/class_scrapper.png"
+        "logo": "images/class_scrapper.png",
+        "type": "DPS"
     },
     {
         "name": "Wardancer",
-        "logo": "images/class_wardancer.png"
+        "logo": "images/class_wardancer.png",
+        "type": "DPS"
     },
     {
         "name": "Arcana",
-        "logo": "images/class_arcana.png"
+        "logo": "images/class_arcana.png",
+        "type": "DPS"
     },
     {
         "name": "Bard",
-        "logo": "images/class_bard.png"
+        "logo": "images/class_bard.png",
+        "type": "Support"
     },
     {
         "name": "Sorceress",
-        "logo": "images/class_sorceress.png"
+        "logo": "images/class_sorceress.png",
+        "type": "DPS"
     },
     {
         "name": "Summoner",
-        "logo": "images/class_summoner.png"
+        "logo": "images/class_summoner.png",
+        "type": "DPS"
     },
     {
         "name": "Artillerist",
-        "logo": "images/class_arti.png"
+        "logo": "images/class_arti.png",
+        "type": "DPS"
     },
     {
         "name": "Deadeye",
-        "logo": "images/class_deadeye.png"
+        "logo": "images/class_deadeye.png",
+        "type": "DPS"
     },
     {
         "name": "Scouter",
-        "logo": "images/class_scouter.png"
+        "logo": "images/class_scouter.png",
+        "type": "DPS"
     },
     {
         "name": "Sharpshooter",
-        "logo": "images/class_ss.png"
+        "logo": "images/class_ss.png",
+        "type": "DPS"
     },
     {
         "name": "Gunslinger",
-        "logo": "images/class_gs.png"
+        "logo": "images/class_gs.png",
+        "type": "DPS"
     },
     {
         "name": "Deathblade",
-        "logo": "images/class_db.png"
+        "logo": "images/class_db.png",
+        "type": "DPS"
     },
     {
         "name": "Reaper",
-        "logo": "images/class_reaper.png"
+        "logo": "images/class_reaper.png",
+        "type": "DPS"
     },
     {
         "name": "Shadowhunter",
-        "logo": "images/class_shadowhunter.png"
+        "logo": "images/class_shadowhunter.png",
+        "type": "DPS"
     },
     {
         "name": "Souleater",
-        "logo": "images/class_se.png"
+        "logo": "images/class_se.png",
+        "type": "DPS"
     },
     {
         "name": "Aeromancer",
-        "logo": "images/class_aeromancer.png"
+        "logo": "images/class_aeromancer.png",
+        "type": "DPS"
     },
     {
         "name": "Artist",
-        "logo": "images/class_artist.png"
+        "logo": "images/class_artist.png",
+        "type": "Support"
     }
 ]
+
+export const categories = [
+    {
+        "idcategorie": "c_event_shop",
+        "name": "Event Shop",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 1,
+        "rested": false,
+        "completAllAtOnce": true,
+        "logo": "images/all_quest.webp",
+        "image": "",
+        "inputs": []
+    },
+    {
+        "idcategorie": "c_stronghold_merchant",
+        "name": "Stronghold Merchant",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 1,
+        "rested": false,
+        "completAllAtOnce": true,
+        "logo": "images/castle.svg",
+        "image": "",
+        "inputs": []
+    },
+    {
+        "idcategorie": "c_stronghold_activities",
+        "name": "Stronghold Activities",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 2,
+        "rested": false,
+        "completAllAtOnce": true,
+        "logo": "images/castle.svg",
+        "image": "",
+        "inputs": []
+    },
+    {
+        "idcategorie": "c_chaos_gate",
+        "name": "Chaos Gate",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 3,
+        "rested": false,
+        "completAllAtOnce": true,
+        "logo": "images/chaos_gate.png",
+        "image": "",
+        "horaire": [1, 4, 6, 7],
+        "inputs": []
+    },
+    {
+        "idcategorie": "c_world_boss",
+        "name": "World Boss",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 5,
+        "rested": false,
+        "completAllAtOnce": true,
+        "logo": "images/island.webp",
+        "image": "",
+        "horaire": [2, 5, 7],
+        "inputs": []
+    },
+    {
+        "idcategorie": "c_fouille",
+        "name": "Fouille",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 10,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/trade_skill_tool.webp",
+        "image": "",
+        "inputs": [
+            { "type": "number", "id": "tasksconfig_artisanatGainPer10Minutes_input", "var": "artisanatGainPer10Minutes", "name": "Artisanat Gain Per 10 Minutes" },
+            { "type": "number", "id": "tasksconfig_artisanatMaxLifeEnergy_input", "var": "artisanatMaxLifeEnergy", "name": "Artisanat Max Life Energy" },
+            { "type": "number", "id": "tasksconfig_artisanatLifeEnergy_input", "var": "artisanatLifeEnergy", "name": "Artisanat Life Energy" }
+        ]
+    },
+    {
+        "idcategorie": "c_kurzan_frontline",
+        "name": "Kurzan Frontline",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 2,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/chaos-dungeon.webp",
+        "image": "",
+        "maxRest": 200,
+        "bloodstonesGain": 220,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+        ]
+    },
+    {
+        "idcategorie": "c_guilde_donation",
+        "name": "Guilde",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 1,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/sylmael.png",
+        "image": "",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+        ]
+    },
+    {
+        "idcategorie": "c_una_task",
+        "name": "Una",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 3,
+        "duration": 1,
+        "rested": true,
+        "completAllAtOnce": true,
+        "logo": "images/daily.webp",
+        "image": "",
+        "maxRest": 100,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+        ]
+    },
+    {
+        "idcategorie": "c_lopang_task",
+        "name": "Lopang",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 3,
+        "duration": 1,
+        "rested": true,
+        "completAllAtOnce": true,
+        "logo": "images/daily.webp",
+        "image": "",
+        "maxRest": 100,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+        ]
+    },
+    {
+        "idcategorie": "c_ageoros",
+        "name": "Ageoros",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 2,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/guardian.png",
+        "image": "",
+        "maxRest": 100,
+        "bloodstonesGain": 220,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+        ]
+    },
+    {
+        "idcategorie": "c_skolakia",
+        "name": "Skolakia",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 4,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/guardian.png",
+        "image": "",
+        "maxRest": 100,
+        "bloodstonesGain": 220,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+        ]
+    },
+    {
+        "idcategorie": "c_brelv2_1_2",
+        "name": "Brelshaza Act. 2",
+        "gold": true,
+        "NM": {
+            "ilevel": 1670,
+            "gain": 27500,
+            "G1": 9000,
+            "G2": 18500,
+            "coffreG1": -3800,
+            "coffreG2": -5600
+        },
+        "HM": {
+            "ilevel": 1692,
+            "gain": 34000,
+            "G1": 11000,
+            "G2": 23000,
+            "coffreG1": -4500,
+            "coffreG2": -7200
+        },
+        "reset": "weekly",
+        "groupe": "raids",
+        "repet": 2,
+        "duration": 60,
+        "rested": false,
+        "completAllAtOnce": false,
+        "trackGold": true,
+        "logo": "images/brelv2icon.jpg",
+        "image": "images/brelv2bg.jpg",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" }
+        ]
+    },
+    {
+        "idcategorie": "c_aegir_1_2",
+        "name": "Aegir",
+        "gold": true,
+        "NM": {
+            "ilevel": 1660,
+            "gain": 24000,
+            "G1": 7500,
+            "G2": 16500,
+            "coffreG1": -3200,
+            "coffreG2": -5300
+        },
+        "HM": {
+            "ilevel": 1680,
+            "gain": 30000,
+            "G1": 10000,
+            "G2": 20000,
+            "coffreG1": -4100,
+            "coffreG2": -6600
+        },
+        "reset": "weekly",
+        "groupe": "raids",
+        "repet": 2,
+        "duration": 60,
+        "rested": false,
+        "completAllAtOnce": false,
+        "trackGold": true,
+        "logo": "images/townmusic_224.webp",
+        "image": "images/aegirbg.jpg",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" }
+        ]
+    },
+    {
+        "idcategorie": "c_theamine_1_4",
+        "name": "Thaemine",
+        "gold": true,
+        "NM": {
+            "ilevel": 1610,
+            "gain": 13000,
+            "G1": 3500,
+            "G2": 4000,
+            "G3": 5500,
+            "coffreG1": -1500,
+            "coffreG2": -1800,
+            "coffreG3": -2500
+        },
+        "HM": {
+            "ilevel": 1620,
+            "gain": 28600,
+            "G1": 4400,
+            "G2": 5500,
+            "G3": 8900,
+            "G4": 9800,
+            "coffreG1": -1700,
+            "coffreG2": -1900,
+            "coffreG3": -2300,
+            "coffreG4": -2300
+        },
+        "reset": "bimensuelthaemine",
+        "groupe": "raids",
+        "repet": 4,
+        "duration": 60,
+        "rested": false,
+        "completAllAtOnce": false,
+        "trackGold": true,
+        "logo": "images/ToxicBaby.png",
+        "image": "images/raidsv2thaemine.jpg",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG3_input", "var": "coffreG3", "name": "Coffre G3" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG4_input", "var": "coffreG4", "name": "Coffre G4" }
+        ]
+    },
+    {
+        "idcategorie": "c_echidna_1_2",
+        "name": "Echidna",
+        "gold": true,
+        "NM": {
+            "ilevel": 1620,
+            "gain": 16000,
+            "G1": 6000,
+            "G2": 10000,
+            "coffreG1": -2200,
+            "coffreG2": -3400
+        },
+        "HM": {
+            "ilevel": 1630,
+            "gain": 19500,
+            "G1": 7000,
+            "G2": 12500,
+            "coffreG1": -2800,
+            "coffreG2": -4100
+        },
+        "reset": "weekly",
+        "groupe": "raids",
+        "repet": 2,
+        "duration": 60,
+        "rested": false,
+        "completAllAtOnce": false,
+        "trackGold": true,
+        "logo": "images/EchidnaWow.png",
+        "image": "images/raidsv2echidna.jpg",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" }
+        ]
+    },
+    {
+        "idcategorie": "c_behemoth_1_2",
+        "name": "Behemoth",
+        "gold": false,
+        "NM": {
+            "ilevel": 1620,
+            "gain": 18000,
+            "G1": 6500,
+            "G2": 11500,
+            "coffreG1": -1800,
+            "coffreG2": -2700
+        },
+        "reset": "weekly",
+        "groupe": "raids",
+        "repet": 2,
+        "duration": 60,
+        "rested": false,
+        "completAllAtOnce": false,
+        "trackGold": true,
+        "logo": "images/behemothemote.png",
+        "image": "images/behemoth.jpg",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" }
+        ]
+    },
+
+    {
+        "idcategorie": "c_ebony_cube",
+        "name": "Ebony Cube",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 2,
+        "duration": 5,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/cubet4_1.webp",
+        "image": "",
+        "bloodstonesGain": 220,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+        ]
+    },
+    {
+        "idcategorie": "c_pirate_shop",
+        "name": "Pirate Shop",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 1,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/pirate_coin.png",
+        "image": "",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+        ]
+    },
+    {
+        "idcategorie": "c_weekly_una",
+        "name": "Weekly Una",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 1,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/weekly.webp",
+        "image": "",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+        ]
+    },
+    {
+        "idcategorie": "c_guilde_shop",
+        "name": "Guilde Shop",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 1,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/sylmael.png",
+        "image": "",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+        ]
+    },
+    {
+        "idcategorie": "c_soloraid_shop",
+        "name": "Solo Raid Shop",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 1,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/legion_raid.png",
+        "image": "",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+        ]
+    }
+]
+
+export const MAX_BLOODSTONES = 6000;
 
 export const getLastWednesday = () => {
     const today = new Date();
@@ -1278,4 +1762,15 @@ export const getNextWednesday = () => {
     nextWednesday.setDate(today.getDate() + ((3 - dayOfWeek + 7) % 7));
     nextWednesday.setHours(0, 0, 0, 0);
     return nextWednesday;
+}
+
+export const daysRestants = () => {
+    const substract = format(new Date(), 'H') < 11 ? 1 : 0;
+    let today = getDay(new Date()) - substract;
+    today = today === 0 ? 7 : today;
+    return today === 3 ? 6 : today === 4 ? 5 : today === 5 ? 4 : today === 6 ? 3 : today === 7 ? 2 : today === 1 ? 1 : 0;
+};
+
+export const getCategorieByName = (idcategorie) => {
+    return categories.find(c => c.name === idcategorie)
 }

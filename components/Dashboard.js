@@ -3,14 +3,197 @@
 import { useAuth } from '@/context/AuthContext'
 import { redirect } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
+import { format, getDay, subDays } from 'date-fns'
 import { db } from '@/firebase'
 import { doc, setDoc } from 'firebase/firestore'
 import { toast } from 'react-hot-toast';
 import Loading from './Loading'
+import { categories, classes, daysRestants, getCategorieByName, MAX_BLOODSTONES } from '@/utils'
 
 export default function Dashboard() {
-    const { currentUser, userDataObj, setUserDataObj, commonDataObj, setCommonDataObj, loading } = useAuth()
-    const [commonData, setCommonData] = useState({})
+    const { currentUser, userDataObj, setUserDataObj, commonDataObj, setCommonDataObj, loading, resetDaily } = useAuth();
+    const [commonData, setCommonData] = useState({});
+    const [tasks, setTasks] = useState(null);
+    const [persos, setPersos] = useState(null);
+    let displayRaidPicture = false;
+
+    useEffect(() => {
+        if (currentUser && userDataObj) {
+            setTasks(userDataObj.tasks);
+        }
+    }, [userDataObj, currentUser]);
+
+    useEffect(() => {
+        if (currentUser && userDataObj) {
+            setPersos([...userDataObj.roster.persos, { name: 'Roster', ilevel: userDataObj.roster.ilevel }]);
+        }
+    }, [userDataObj, currentUser]);
+
+    const handleTaskClick = (task) => {
+        const c = getCategorieByName(task.idcategorie);
+        let updatedUserDataObj = { ...userDataObj };
+
+        if (task?.artisanatLifeEnergy) {
+            const remainingLifeEnergy = prompt(`Enter remaining life energy:`);
+
+            if (!remainingLifeEnergy) return;
+
+            task.artisanatLifeEnergy = parseInt(remainingLifeEnergy);
+            task.dateMaj = new Date().toISOString();
+        }
+
+        if (c?.bloodstonesGain) {
+            const updatedPersos = persos.map(p => {
+                if (p.name === task.idperso) {
+                    const newBloodstones = (p.bloodstones || 0) + c.bloodstonesGain;
+                    return { ...p, bloodstones: newBloodstones > 6000 ? 6000 : newBloodstones };
+                }
+                return p;
+            });
+
+            setPersos(updatedPersos);
+
+            updatedUserDataObj = {
+                ...updatedUserDataObj,
+                roster: {
+                    ...userDataObj.roster,
+                    persos: updatedPersos.filter(p => p.name !== 'Roster')
+                }
+            };
+        }
+
+        if (c.completAllAtOnce) {
+            task.done = c.repet
+            task.count = task.count + c.repet
+
+            if (task?.rest) {
+                const rest = c.maxRest / 5;
+
+                for (let index = 0; index < c.repet; index++) {
+                    if (task.rest >= rest) task.rest -= rest
+                }
+            }
+        } else {
+            task.done++;
+            task.count++;
+            
+            if (task?.rest) {
+                const rest = c.maxRest / 5;
+                
+                if (task.rest >= rest) task.rest -= rest;
+            }
+        }
+
+        const updatedTasks = tasks.map(t => {
+            if (t.idtask === task.idtask) {
+                return { ...task };
+            }
+            
+            return t;
+        });
+
+        setTasks(updatedTasks);
+
+        updatedUserDataObj = {
+            ...updatedUserDataObj,
+            tasks: updatedTasks
+        };
+
+        setUserDataObj(updatedUserDataObj);
+
+        const docRef = doc(db, 'users', currentUser.uid);
+        setDoc(docRef, updatedUserDataObj, { merge: true })
+            .then(() => {
+                toast.success('Task updated successfully', {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                });
+            })
+            .catch(err => {
+                console.error('Error updating task: ', err);
+            });
+    };
+
+    const handleBloodstoneClick = (perso) => {
+        if (!perso?.trackBloodstones) {
+            return;
+        }
+
+        const newBloodstones = (perso.bloodstones || 0) + 220;
+        const updatedPerso = { ...perso, bloodstones: newBloodstones > 6000 ? 6000 : newBloodstones };
+
+        const updatedPersos = persos.map(p => {
+            if (p.name === perso.name) {
+                return updatedPerso;
+            }
+            return p;
+        });
+
+        setPersos(updatedPersos);
+
+        const updatedUserDataObj = {
+            ...userDataObj,
+            roster: {
+                ...userDataObj.roster,
+                persos: updatedPersos.filter(p => p.name !== 'Roster')
+            }
+        };
+
+        setUserDataObj(updatedUserDataObj);
+
+        const docRef = doc(db, 'users', currentUser.uid);
+        setDoc(docRef, updatedUserDataObj, { merge: true })
+            .then(() => {
+                toast.success('Bloodstones updated successfully', {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                });
+            })
+            .catch(err => {
+                console.error('Error updating bloodstones: ', err);
+            });
+    };
+
+    const missingBloodstones = (perso) => {
+        if (!perso?.trackBloodstones) {
+            return;
+        }
+        
+        const daysLeft = daysRestants();
+        
+        const dailyBloodstones = tasks
+            .filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'daily')
+            .reduce((total, task) => {
+                const category = getCategorieByName(task.idcategorie);
+                return total + ((category.bloodstonesGain || 0) * (category.repet - task.done));
+            }, 0);
+        
+        const weeklyBloodstones = tasks
+            .filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'weekly')
+            .reduce((total, task) => {
+                const category = getCategorieByName(task.idcategorie);
+                return total + ((category.bloodstonesGain || 0) * (category.repet - task.done));
+            }, 0);
+
+        //console.log(perso.name, perso.bloodstones, (perso.bloodstones + (440 * daysLeft) + dailyBloodstones + weeklyBloodstones), daysLeft, dailyBloodstones, weeklyBloodstones);
+
+        const missing_bloodstones = MAX_BLOODSTONES - (perso.bloodstones + (440 * daysLeft) + dailyBloodstones + weeklyBloodstones);
+        return missing_bloodstones <= 0 ? '' : 'Missing ' + missing_bloodstones + ' bloodstones';
+    };
+
+    const getPersoByName = (name) => {
+        return userDataObj.roster.persos.find(p => p.name === name);
+    };
+
+    const getClasseByName = (classeName) => {
+        return classes.find(classe => classe.name === classeName);
+    };
 
     if (loading) {
         return <Loading />
@@ -55,12 +238,144 @@ export default function Dashboard() {
     }
 
     return (
-        <div className='flex flex-col justify-center items-center h-full gap-6'>
-            {/* <h1 className='text-4xl font-bold text-white'>Dashboard</h1>
-            <p className='text-white'>{currentUser.uid}</p>
-            <p className='text-white'>{JSON.stringify(userDataObj)}</p>
-            <p className='text-white'>{JSON.stringify(commonDataObj)}</p>
-            <button onClick={() => { handleCommonData() }}>SetCommonData</button> */}
+        <div className='max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 h-full overflow-y-scroll overflow-x-hidden'>
+            <div className='grid grid-cols-8 text-gray-300 p-2 border-l border-r border-b border-[#2e3643] sticky top-0 bg-[#1e232d] box-shadow-loa z-10'>
+                <div>Perso</div>
+                <div>ILevel</div>
+                <div className='col-span-2'>Daily</div>
+                <div className='col-span-2'>Weekly</div>
+                <div>Bloodstones</div>
+                <div>Logo</div>
+            </div>
+            <div className='grid grid-cols-1'>
+                {persos?.map((perso, index) => {
+                    const currentHour = parseInt(format(new Date(), 'HH'));
+                    const currentDay = getDay(new Date());
+                    const previousDay = currentDay === 1 ? 7 : currentDay - 1;
+
+                    const filteredTasks = tasks?.filter(task => 
+                        (task.idperso === perso.name || (task.idperso === "" && perso.name === "Roster")) 
+                        && task.actif
+                        && (task.done < getCategorieByName(task.idcategorie).repet && (task.rest == undefined || task.done == 0 && task.rest >= task.restNeeded || task.done > 0))
+                        && ((getCategorieByName(task.idcategorie).horaire !== undefined && getCategorieByName(task.idcategorie).horaire.includes(currentHour < userDataObj.reset.resetHour ? previousDay : currentDay)) || getCategorieByName(task.idcategorie).horaire === undefined)
+                    );
+
+                    const daily = filteredTasks?.filter(task => getCategorieByName(task.idcategorie).groupe === 'daily').sort((a, b) => a.idcategorie.localeCompare(b.idcategorie));
+                    const weekly = filteredTasks?.filter(task => getCategorieByName(task.idcategorie).groupe === 'weekly').sort((a, b) => a.idcategorie.localeCompare(b.idcategorie));
+
+                    return (daily?.length > 0 || weekly?.length > 0 || (missingBloodstones(perso) !== '' && perso.trackBloodstones)) && (
+                        <div key={index} className='grid grid-cols-8 text-gray-400 px-2 py-4 border-l border-r border-b border-[#2e3643]'>
+                            <h2 className='content-center text-lg'>{perso.name}</h2>
+                            <p className='content-center'>{perso.ilevel}</p>
+                            <div className='col-span-2'>
+                                <ul className="flex flex-row flex-wrap gap-2">
+                                    {daily.map((task, idx) => (
+                                        <li key={idx} className="flex flex-row items-center gap-2 p-1 rounded-lg cursor-pointer border hover:text-gray-200 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700" onClick={() => handleTaskClick(task)}>
+                                            {task?.artisanatLifeEnergy} <img className="w-[40px]" src={getCategorieByName(task.idcategorie).logo} />
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className='col-span-2'>
+                                <ul className="flex flex-row flex-wrap gap-2">
+                                    {weekly.map((task, idx) => (
+                                        <li key={idx} className="flex flex-row items-center gap-2 p-1 rounded-lg cursor-pointer border hover:text-gray-200 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700" onClick={() => handleTaskClick(task)}>
+                                            <img className="w-[40px]" src={getCategorieByName(task.idcategorie).logo} />
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div className={perso?.trackBloodstones ? 'content-center p-1 mr-8 rounded-lg cursor-pointer border hover:text-gray-200 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700' : ''} onClick={() => handleBloodstoneClick(perso)}>
+                                <p className='text-sm'>{perso?.trackBloodstones ? perso?.bloodstones : ''}</p>
+                                <p className='text-xs'>{missingBloodstones(perso)}</p>
+                            </div>
+
+                            {classes.find(classe => classe.name === perso?.classe)?.logo && (
+                                <img src={classes.find(classe => classe.name === perso?.classe)?.logo} alt={`${perso.name} class logo`} className='class_icon w-12 h-12' />
+                            )}
+                        </div>
+                    )
+                })}
+            </div>
+            <div className='h-4'></div>
+            <div className='grid grid-cols-1 border border-[#2e3643]'>
+                {
+                    categories.filter(categorie => categorie.groupe === 'raids').map((raid, indexr) => {
+                        //console.log('raids', raid)
+
+                        if (tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length > 0) {
+                            displayRaidPicture = !displayRaidPicture;
+                            
+                            return (
+                                <div key={indexr} className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
+                                    {displayRaidPicture && (
+                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center bg-[]" style={{ backgroundImage: `url(${raid.image})` }}></div>
+                                    )}
+                                    <div className="col-span-2">
+                                        {
+                                            tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).map((task, indext) => {
+
+                                                const p = getPersoByName(task.idperso);
+                                                const classe = getClasseByName(p.classe);
+                                                
+                                                let chest = '';
+
+                                                //console.log(raid);
+
+                                                if (task.hasOwnProperty('coffreG1') && task.coffreG1) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-1"></i>' : '&nbsp;<i class="fa-solid fa-1"></i>';
+                                                if (task.hasOwnProperty('coffreG2') && task.coffreG2) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-2"></i>' : '&nbsp;<i class="fa-solid fa-2"></i>';
+                                                if (task.hasOwnProperty('coffreG3') && task.coffreG3) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-3"></i>' : '&nbsp;<i class="fa-solid fa-3"></i>';
+                                                if (task.hasOwnProperty('coffreG4') && task.coffreG4) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-4"></i>' : '&nbsp;<i class="fa-solid fa-4"></i>';
+
+                                                let gate = '';
+
+                                                for (let i = 1; i <= raid.repet; i++) {
+                                                    if (task.done < i) gate += gate.length == 0 ? `<i class="fa-solid fa-dungeon"></i>&nbsp;<i class="fa-solid fa-${i}"></i>` : `&nbsp;<i class="fa-solid fa-${i}"></i>`;
+                                                }
+
+                                                return (
+                                                    <div key={indext} className="grid grid-cols-6 border-b border-[#2e3643] p-2">
+                                                        <div className="text-gray-300 content-center">
+                                                            <div>{task.idperso}</div>
+                                                            <div className='text-xs text-red-700'>{task?.gold ? '' : 'Uncheck golds'}</div>
+                                                        </div>
+                                                        <div className="content-center">
+                                                            <div className='flex flex-row justify-between mr-6'><span>{p.classe}</span><span>{p.ilevel}</span></div>
+                                                        </div>
+                                                        <div className="content-center">
+                                                            <div>{classe.type}</div>
+                                                        </div>
+                                                        <div className="content-center">
+                                                            <div dangerouslySetInnerHTML={{ __html: chest }}></div>
+                                                        </div>
+                                                        <div className="content-center">
+                                                            <div dangerouslySetInnerHTML={{ __html: gate }}></div>
+                                                        </div>
+                                                        <div className="flex justify-end gap-2">
+                                                            <button onClick={() => handleTaskClick(task)} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.NM.ilevel && (!raid.HM || p.ilevel < raid.HM.ilevel) ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.NM.ilevel}</span> NM</button>
+                                                            {raid.HM && (
+                                                                <button onClick={() => handleTaskClick(task)} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.HM.ilevel ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.HM.ilevel}</span> HM</button>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    {!displayRaidPicture && (
+                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center bg-[]" style={{ backgroundImage: `url(${raid.image})` }}></div>
+                                    )}
+                                </div>
+                            )
+                        }
+
+                        // tasks?.filter(task => task.idcategorie === raid.name).map((task, indext) => {
+                        //     console.log('task', task)
+                        // })
+                    })
+                }
+            </div>
         </div>
     )
 }

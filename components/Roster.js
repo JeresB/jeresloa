@@ -16,7 +16,9 @@ export default function Roster() {
         "idperso": "",
         "name": "",
         "classe": "",
-        "ilevel": '',
+        "ilevel": "",
+        "bloodstones": 0,
+        "trackBloodstones": false,
     });
 
     useEffect(() => {
@@ -27,10 +29,16 @@ export default function Roster() {
 
     useEffect(() => {
         if (selectedPerso.idperso != "") {
+            let p = selectedPerso;
+            
+            if (!p.bloodstones) {
+                p.bloodstones = 0;
+            }
+
             const r = {
                 ...roster,
                 persos: roster.persos.map(perso =>
-                    perso.idperso === selectedPerso.idperso ? selectedPerso : perso
+                    perso.idperso === p.idperso ? p : perso
                 )
             }
 
@@ -120,6 +128,8 @@ export default function Roster() {
                 "name": "",
                 "classe": "",
                 "ilevel": 0,
+                "bloodstones": 0,
+                "trackBloodstones": false,
             });
         }
     }
@@ -146,6 +156,8 @@ export default function Roster() {
                 "name": "",
                 "classe": "",
                 "ilevel": 0,
+                "bloodstones": 0,
+                "trackBloodstones": false,
             });
         }
     }
@@ -223,6 +235,44 @@ export default function Roster() {
                             </datalist>
                             <label htmlFor="roster_perso_class_input" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Class</label>
                         </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <div className="inline-flex items-center">
+                                <label className="flex items-center cursor-pointer relative">
+                                    <input
+                                        type="checkbox"
+                                        className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-gray-400 checked:bg-blue-800 checked:border-blue-800"
+                                        id="roster_perso_trackbloodstone_input"
+                                        checked={selectedPerso?.trackBloodstones || ""}
+                                        onChange={e => setSelectedPerso(prevSelectedPerso => ({ ...prevSelectedPerso, trackBloodstones: e.target.checked }))}
+                                    />
+                                    <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </label>
+                                <label htmlFor="roster_perso_trackbloodstone_input" className="ml-2 text-sm cursor-pointer text-gray-500 dark:text-gray-400 ">Track Bloodstones</label>
+                            </div>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <div className="inline-flex items-center">
+                                <label className="flex items-center cursor-pointer relative">
+                                    <input
+                                        type="checkbox"
+                                        className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-gray-400 checked:bg-blue-800 checked:border-blue-800"
+                                        id="roster_perso_goldearner_input"
+                                        checked={selectedPerso?.goldEarner || ""}
+                                        onChange={e => setSelectedPerso(prevSelectedPerso => ({ ...prevSelectedPerso, goldEarner: e.target.checked }))}
+                                    />
+                                    <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </label>
+                                <label htmlFor="roster_perso_goldearner_input" className="ml-2 text-sm cursor-pointer text-gray-500 dark:text-gray-400 ">Gold Earner</label>
+                            </div>
+                        </div>
                         <div className="flex justify-end gap-2">
                             {
                                 selectedPerso.idperso != "" && (
@@ -231,6 +281,8 @@ export default function Roster() {
                                         "name": "",
                                         "classe": "",
                                         "ilevel": 0,
+                                        "bloodstones": 0,
+                                        "trackBloodstones": false,
                                     })} id="roster_perso_cancel" type="button" className="text-gray-400 hover:text-white border border-gray-700 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-500 rounded text-xs px-3 py-2"><i className="fa-solid fa-times"></i> Clear Data</button>
                                 )
                             }
