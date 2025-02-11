@@ -6,6 +6,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import Login from "@/components/Login";
 import Fatember from "@/components/Fatember";
+import GoldsDrawer from "@/components/GoldsDrawer";
 
 const ComfortaaSans = Comfortaa({ subsets: ["latin"] });
 
@@ -29,6 +30,9 @@ export default function RootLayout({ children }) {
                         <Link href={'/fatember'}>
                             <div className="text-white text-lg font-bold mx-4 hover:bg-gray-800 rounded-lg p-2">Fate Embers</div>
                         </Link>
+                        <Link href={'/golds'}>
+                            <div className="text-white text-lg font-bold mx-4 hover:bg-gray-800 rounded-lg p-2">Golds</div>
+                        </Link>
                     </div>
                     <Login />
                 </div>
@@ -51,8 +55,9 @@ export default function RootLayout({ children }) {
                     {header}
                     
                     <div className="flex flex-row h-full gap-2">
-                        <div className="h-full w-[230px]">
+                        <div className="flex flex-col h-full w-[230px] gap-2">
                             <Fatember />
+                            <GoldsDrawer />
                         </div>
                         {children}
                     </div>

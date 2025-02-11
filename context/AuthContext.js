@@ -1,7 +1,7 @@
 'use client'
 
 import { auth, db } from '@/firebase'
-import { getCategorieByName } from '@/utils'
+import { getCategorieByName, getLastWednesday, getNextWednesday } from '@/utils'
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup, GithubAuthProvider } from 'firebase/auth'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { format, getDay, subDays } from 'date-fns'
@@ -14,11 +14,13 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState(null)
-    const [userDataObj, setUserDataObj] = useState(null)
-    const [commonDataObj, setCommonDataObj] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const provider = new GithubAuthProvider()
+    const [currentUser, setCurrentUser] = useState(null);
+    const [userDataObj, setUserDataObj] = useState(null);
+    const [commonDataObj, setCommonDataObj] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [startDate, setStartDate] = useState(new Date(getLastWednesday()));
+    const [endDate, setEndDate] = useState(new Date(getNextWednesday()));
+    const provider = new GithubAuthProvider();
 
     provider.setCustomParameters({
         'allow_signup': 'false'
@@ -212,6 +214,11 @@ export function AuthProvider({ children }) {
                                     task.gold = false;
                                 }
                             });
+
+                            // Reset raid_gate_done if perso is a gold earner
+                            if (perso.goldEarner) {
+                                perso.raid_gate_done = 0;
+                            }
                         });
                     }
 
@@ -221,12 +228,21 @@ export function AuthProvider({ children }) {
                 const docRef = doc(db, 'users', currentUser.uid);
 
                 updateDoc(docRef, {
-                    tasks: userDataObj.tasks
+                    tasks: userDataObj.tasks,
+                    'roster.persos': userDataObj.roster.persos
                 }).then(() => {
                     console.log('Tasks updated successfully');
                 }).catch((error) => {
                     console.error('Error updating tasks: ', error);
                 });
+            }
+
+            if (!userDataObj?.golds) {
+                userDataObj.golds = {
+                    currentGolds: 0,
+                    historiques: [],
+                    incomes: []
+                }
             }
         }
     }, [userDataObj])
@@ -399,7 +415,11 @@ export function AuthProvider({ children }) {
         resetDaily,
         resetWeekly,
         resetBiMensuel,
-        resetBiMensuelOffset
+        resetBiMensuelOffset,
+        startDate,
+        setStartDate,
+        endDate,
+        setEndDate
     }
 
     return (

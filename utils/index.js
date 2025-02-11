@@ -1514,6 +1514,7 @@ export const categories = [
         "trackGold": true,
         "logo": "images/brelv2icon.jpg",
         "image": "images/brelv2bg.jpg",
+        "bloodstonesGain": 330,
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
@@ -1550,6 +1551,7 @@ export const categories = [
         "trackGold": true,
         "logo": "images/townmusic_224.webp",
         "image": "images/aegirbg.jpg",
+        "bloodstonesGain": 330,
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
@@ -1592,6 +1594,7 @@ export const categories = [
         "trackGold": true,
         "logo": "images/ToxicBaby.png",
         "image": "images/raidsv2thaemine.jpg",
+        "bloodstonesGain": 330,
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
@@ -1630,6 +1633,7 @@ export const categories = [
         "trackGold": true,
         "logo": "images/EchidnaWow.png",
         "image": "images/raidsv2echidna.jpg",
+        "bloodstonesGain": 330,
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
@@ -1658,6 +1662,7 @@ export const categories = [
         "trackGold": true,
         "logo": "images/behemothemote.png",
         "image": "images/behemoth.jpg",
+        "bloodstonesGain": 330,
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
@@ -1741,6 +1746,121 @@ export const categories = [
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
         ]
+    }
+]
+
+export const gold_types = [
+    {
+        name: "T4 Honing",
+        logo: "images/T4 Honing.webp"
+    },
+    {
+        name: "Achat",
+        logo: "images/Achat.webp"
+    },
+    {
+        name: "Artisanat",
+        logo: "images/Artisanat.webp"
+    },
+    {
+        name: "Coffre de raids",
+        logo: "images/Coffre de raids.webp"
+    },
+    {
+        name: "Depense",
+        logo: "images/Depense.webp"
+    },
+    {
+        name: "Echidna Honing",
+        logo: "images/Echidna Honing.webp"
+    },
+    {
+        name: "Elixir",
+        logo: "images/Elixir.webp"
+    },
+    {
+        name: "Events",
+        logo: "images/Events.webp"
+    },
+    {
+        name: "Fate Ember",
+        logo: "images/Fate Ember.webp"
+    },
+    {
+        name: "Gear Crafting",
+        logo: "images/Gear Crafting.webp"
+    },
+    {
+        name: "Gemme",
+        logo: "images/Gemme.webp"
+    },
+    {
+        name: "Gravures",
+        logo: "images/Gravures.webp"
+    },
+    {
+        name: "Honing",
+        logo: "images/Honing.webp"
+    },
+    {
+        name: "Karma",
+        logo: "images/Karma.webp"
+    },
+    {
+        name: "Knowledge Transfer",
+        logo: "images/Knowledge Transfer.webp"
+    },
+    {
+        name: "Oreha",
+        logo: "images/Oreha.webp"
+    },
+    {
+        name: "Quality",
+        logo: "images/Quality.webp"
+    },
+    {
+        name: "Raids",
+        logo: "images/Raids.webp"
+    },
+    {
+        name: "Refine Accessory",
+        logo: "images/Refine Accessory.webp"
+    },
+    {
+        name: "Solars",
+        logo: "images/Solars.webp"
+    },
+    {
+        name: "Stronghold",
+        logo: "images/Stronghold.webp"
+    },
+    {
+        name: "T4 Oreha",
+        logo: "images/T4 Oreha.webp"
+    },
+    {
+        name: "Token Una",
+        logo: "images/Token Una.webp"
+    },
+    {
+        name: "Transcendence",
+        logo: "images/Transcendence.webp"
+    },
+    {
+        name: "Transcendence d'arme",
+        logo: "images/Transcendence d'arme.webp"
+    },
+    {
+        name: "Transfert",
+        logo: "images/Transfert.webp"
+    },
+    {
+        name: "Update",
+        logo: "images/Update.webp"
+    },
+    {
+        name: "Vente",
+        logo: "images/Vente.webp"
     }
 ]
 

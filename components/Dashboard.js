@@ -29,7 +29,7 @@ export default function Dashboard() {
         }
     }, [userDataObj, currentUser]);
 
-    const handleTaskClick = (task) => {
+    const handleTaskClick = (task, difficulty = null) => {
         const c = getCategorieByName(task.idcategorie);
         let updatedUserDataObj = { ...userDataObj };
 
@@ -45,8 +45,26 @@ export default function Dashboard() {
         if (c?.bloodstonesGain) {
             const updatedPersos = persos.map(p => {
                 if (p.name === task.idperso) {
-                    const newBloodstones = (p.bloodstones || 0) + c.bloodstonesGain;
-                    return { ...p, bloodstones: newBloodstones > 6000 ? 6000 : newBloodstones };
+                    const newBloodstones = (p.bloodstones || 0);
+                    let updatedPerso = { ...p, bloodstones: newBloodstones > 6000 ? 6000 : newBloodstones };
+
+                    if (c.groupe === 'raids') {
+                        let repet = 1;
+
+                        if (c.completAllAtOnce) repet = c.repet;
+
+                        for (let i = 0; i < repet; i++) {
+                            updatedPerso.raid_gate_done = (p.raid_gate_done || 0) + 1;
+                            if (updatedPerso.raid_gate_done === 2) {
+                                updatedPerso.raid_gate_done = 0;
+                                updatedPerso.bloodstones += c.bloodstonesGain;
+                            }
+                        }
+                    } else {
+                        updatedPerso.bloodstones += c.bloodstonesGain;
+                    }
+
+                    return updatedPerso;
                 }
                 return p;
             });
@@ -76,10 +94,10 @@ export default function Dashboard() {
         } else {
             task.done++;
             task.count++;
-            
+
             if (task?.rest) {
                 const rest = c.maxRest / 5;
-                
+
                 if (task.rest >= rest) task.rest -= rest;
             }
         }
@@ -88,7 +106,7 @@ export default function Dashboard() {
             if (t.idtask === task.idtask) {
                 return { ...task };
             }
-            
+
             return t;
         });
 
@@ -98,6 +116,134 @@ export default function Dashboard() {
             ...updatedUserDataObj,
             tasks: updatedTasks
         };
+
+        if (!c.completAllAtOnce && c.groupe === 'raids' && difficulty) {
+            let histoGold = null;
+            let incomeGold = null;
+            let newGolds = null;
+            let descGold = null;
+            let montantGold = null;
+            const date = new Date().toISOString();
+
+            if (task.gold) {
+                if (task.done === 1) {
+                    newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].G1;
+                    descGold = 'G1 ' + c.name + ' ' + difficulty;
+                    montantGold = c[difficulty].G1;
+                    
+                } else if (task.done === 2) {
+                    newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].G2;
+                    descGold = 'G2 ' + c.name + ' ' + difficulty;
+                    montantGold = c[difficulty].G2;
+
+                } else if (task.done === 3) {
+                    newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].G3;
+                    descGold = 'G3 ' + c.name + ' ' + difficulty;
+                    montantGold = c[difficulty].G3;
+
+                } else if (task.done === 4) {
+                    newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].G4;
+                    descGold = 'G4 ' + c.name + ' ' + difficulty;
+                    montantGold = c[difficulty].G4;
+
+                }
+
+                if (newGolds && descGold && montantGold) {
+                    histoGold = {
+                        date: date,
+                        gold: newGolds
+                    }
+    
+                    incomeGold = {
+                        type: 'Raids',
+                        description: descGold,
+                        categorie: 'positif',
+                        perso: task.idperso,
+                        montant: montantGold,
+                        date: date
+                    }
+                }
+
+                if (newGolds && histoGold && incomeGold) {
+                    updatedUserDataObj = {
+                        ...updatedUserDataObj,
+                        golds: {
+                            ...updatedUserDataObj.golds,
+                            currentGolds: newGolds,
+                            historiques: [
+                                ...updatedUserDataObj.golds.historiques,
+                                histoGold
+                            ],
+                            incomes: [
+                                ...updatedUserDataObj.golds.incomes,
+                                incomeGold
+                            ]
+                        }
+                    };
+                }
+            }
+
+            histoGold = null;
+            incomeGold = null;
+            newGolds = null;
+            descGold = null;
+            montantGold = null;
+
+            if (task.done === 1 && task?.coffreG1) {
+                newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].coffreG1;
+                descGold = 'G1 ' + c.name + ' ' + difficulty;
+                montantGold = c[difficulty].coffreG1;
+
+            } else if (task.done === 2 && task?.coffreG2) {
+                newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].coffreG2;
+                descGold = 'G2 ' + c.name + ' ' + difficulty;
+                montantGold = c[difficulty].coffreG2;
+
+            } else if (task.done === 3 && task?.coffreG3) {
+                newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].coffreG3;
+                descGold = 'G3 ' + c.name + ' ' + difficulty;
+                montantGold = c[difficulty].coffreG3;
+
+            } else if (task.done === 4 && task?.coffreG4) {
+                newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].coffreG4;
+                descGold = 'G4 ' + c.name + ' ' + difficulty;
+                montantGold = c[difficulty].coffreG4;
+            }
+
+            if (newGolds && descGold && montantGold) {
+                histoGold = {
+                    date: date,
+                    gold: newGolds
+                }
+
+                incomeGold = {
+                    type: 'Coffre de raids',
+                    description: descGold,
+                    categorie: 'negatif',
+                    perso: task.idperso,
+                    montant: montantGold,
+                    date: date
+                }
+            }
+
+            if (newGolds && histoGold && incomeGold) {
+                updatedUserDataObj = {
+                    ...updatedUserDataObj,
+                    golds: {
+                        ...updatedUserDataObj.golds,
+                        currentGolds: newGolds,
+                        historiques: [
+                            ...updatedUserDataObj.golds.historiques,
+                            histoGold
+                        ],
+                        incomes: [
+                            ...updatedUserDataObj.golds.incomes,
+                            incomeGold
+                        ]
+                    }
+                };
+            }
+        }
 
         setUserDataObj(updatedUserDataObj);
 
@@ -164,16 +310,16 @@ export default function Dashboard() {
         if (!perso?.trackBloodstones) {
             return;
         }
-        
+
         const daysLeft = daysRestants();
-        
+
         const dailyBloodstones = tasks
             .filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'daily')
             .reduce((total, task) => {
                 const category = getCategorieByName(task.idcategorie);
                 return total + ((category.bloodstonesGain || 0) * (category.repet - task.done));
             }, 0);
-        
+
         const weeklyBloodstones = tasks
             .filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'weekly')
             .reduce((total, task) => {
@@ -253,8 +399,8 @@ export default function Dashboard() {
                     const currentDay = getDay(new Date());
                     const previousDay = currentDay === 1 ? 7 : currentDay - 1;
 
-                    const filteredTasks = tasks?.filter(task => 
-                        (task.idperso === perso.name || (task.idperso === "" && perso.name === "Roster")) 
+                    const filteredTasks = tasks?.filter(task =>
+                        (task.idperso === perso.name || (task.idperso === "" && perso.name === "Roster"))
                         && task.actif
                         && (task.done < getCategorieByName(task.idcategorie).repet && (task.rest == undefined || task.done == 0 && task.rest >= task.restNeeded || task.done > 0))
                         && ((getCategorieByName(task.idcategorie).horaire !== undefined && getCategorieByName(task.idcategorie).horaire.includes(currentHour < userDataObj.reset.resetHour ? previousDay : currentDay)) || getCategorieByName(task.idcategorie).horaire === undefined)
@@ -306,7 +452,7 @@ export default function Dashboard() {
 
                         if (tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length > 0) {
                             displayRaidPicture = !displayRaidPicture;
-                            
+
                             return (
                                 <div key={indexr} className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
                                     {displayRaidPicture && (
@@ -318,7 +464,7 @@ export default function Dashboard() {
 
                                                 const p = getPersoByName(task.idperso);
                                                 const classe = getClasseByName(p.classe);
-                                                
+
                                                 let chest = '';
 
                                                 //console.log(raid);
@@ -353,9 +499,9 @@ export default function Dashboard() {
                                                             <div dangerouslySetInnerHTML={{ __html: gate }}></div>
                                                         </div>
                                                         <div className="flex justify-end gap-2">
-                                                            <button onClick={() => handleTaskClick(task)} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.NM.ilevel && (!raid.HM || p.ilevel < raid.HM.ilevel) ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.NM.ilevel}</span> NM</button>
+                                                            <button onClick={() => handleTaskClick(task, 'NM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.NM.ilevel && (!raid.HM || p.ilevel < raid.HM.ilevel) ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.NM.ilevel}</span> NM</button>
                                                             {raid.HM && (
-                                                                <button onClick={() => handleTaskClick(task)} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.HM.ilevel ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.HM.ilevel}</span> HM</button>
+                                                                <button onClick={() => handleTaskClick(task, 'HM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.HM.ilevel ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.HM.ilevel}</span> HM</button>
                                                             )}
                                                         </div>
                                                     </div>

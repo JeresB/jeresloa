@@ -8,13 +8,11 @@ import { Bar, Doughnut, Pie } from "react-chartjs-2";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
-import { demo_fate_embers, getLastWednesday, getNextWednesday } from '@/utils'
+import { demo_fate_embers } from '@/utils'
 
 export default function FatemberDisplay(props) {
     const { demo } = props
-    const { currentUser, userDataObj, setUserDataObj, commonDataObj, setCommonDataObj, loading } = useAuth()
-    const [startDate, setStartDate] = useState(new Date(getLastWednesday()));
-    const [endDate, setEndDate] = useState(new Date(getNextWednesday()));
+    const { currentUser, userDataObj, setUserDataObj, commonDataObj, setCommonDataObj, loading, startDate, setStartDate, endDate, setEndDate } = useAuth()
     const [fate_embers, setFateEmbers] = useState(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))) : userDataObj?.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))));
 
     const updateFateEmbers = (type, date) => {

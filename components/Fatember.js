@@ -56,7 +56,7 @@ export default function Fatember() {
     }
     // --------------------------------------------------------------------------------
 
-    const nbThisWeek = userDataObj.fate_embers.filter(fe => new Date(fe.date) > getLastWednesday()).length
+    const nbBeforeThisWeek = userDataObj.fate_embers.filter(fe => new Date(fe.date) < getLastWednesday()).length
 
     async function handleAddFateEmber(perso, fe) {
         try {
@@ -77,12 +77,45 @@ export default function Fatember() {
                     date: new Date().toISOString()
                 }
 
-                newData.fate_embers.push(newFe)
+                newData.fate_embers.push(newFe);
 
-                console.log(newData)
+                const feOptions = commonDataObj.fate_ember_options.find(option => option.idfateember === fe);
+                
+                if (feOptions && feOptions.type === 'Golds') {
+                    const montant = feOptions.value || 0;
+                    const newGolds = (userDataObj.golds.currentGolds || 0) + montant;
+
+                    const updatedUserData = {
+                        ...userDataObj,
+                        golds: {
+                            ...userDataObj.golds,
+                            currentGolds: newGolds,
+                            historiques: [
+                                ...userDataObj.golds.historiques,
+                                {
+                                    date: new Date().toISOString(),
+                                    gold: newGolds
+                                }
+                            ],
+                            incomes: [
+                                ...userDataObj.golds.incomes,
+                                {
+                                    type: 'Fate Ember',
+                                    description: feOptions.name,
+                                    categorie: montant > 0 ? 'positif' : 'negatif',
+                                    perso: perso,
+                                    montant: montant,
+                                    date: new Date().toISOString()
+                                }
+                            ]
+                        }
+                    };
+
+                    newData.golds = updatedUserData.golds;
+                }
 
                 // update the global state
-                setUserDataObj(newData)
+                setUserDataObj(newData);
 
                 // update firebase
                 const docRef = doc(db, 'users', currentUser.uid)
@@ -126,7 +159,7 @@ export default function Fatember() {
             <button onClick={handleFateEmberDrawerClick} className={"w-full inline-flex gap-6 items-center justify-between p-2 border rounded-lg cursor-pointer text-gray-300 bg-gray-800 hover:text-gray-200 hover:bg-gray-700 border-gray-700 " + ComfortaaSans.className}>
                 <div className="block min-w-[120px]">
                     <div className="w-full text-left">{userDataObj.fate_embers.length}</div>
-                    <div className="w-full text-left text-gray-400">Starting at {nbThisWeek}</div>
+                    <div className="w-full text-left text-gray-400">Starting at {nbBeforeThisWeek}</div>
                 </div>
                 <img className="w-[32px]" src="images/use_11_221.webp" />
             </button>
