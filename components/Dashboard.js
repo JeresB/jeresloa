@@ -20,16 +20,12 @@ export default function Dashboard() {
     useEffect(() => {
         if (currentUser && userDataObj) {
             setTasks(userDataObj.tasks);
+            //console.log("[Dashboard][useEffect on userDataObj] userDataObj : ", userDataObj);
+            setPersos([...userDataObj?.roster?.persos, { name: 'Roster', ilevel: userDataObj?.roster?.ilevel }]);
         }
     }, [userDataObj, currentUser]);
 
-    useEffect(() => {
-        if (currentUser && userDataObj) {
-            setPersos([...userDataObj.roster.persos, { name: 'Roster', ilevel: userDataObj.roster.ilevel }]);
-        }
-    }, [userDataObj, currentUser]);
-
-    const handleTaskClick = (task, difficulty = null) => {
+    const handleTaskClick = (task, perso, difficulty = null) => {
         const c = getCategorieByName(task.idcategorie);
         let updatedUserDataObj = { ...userDataObj };
 
@@ -42,40 +38,32 @@ export default function Dashboard() {
             task.dateMaj = new Date().toISOString();
         }
 
-        if (c?.bloodstonesGain) {
-            const updatedPersos = persos.map(p => {
-                if (p.name === task.idperso) {
-                    const newBloodstones = (p.bloodstones || 0);
-                    let updatedPerso = { ...p, bloodstones: newBloodstones > 6000 ? 6000 : newBloodstones };
+        if (c?.bloodstonesGain && perso.trackBloodstones) {
+            if (c.groupe === 'raids') {
+                perso.raidgatedone = (perso.raidgatedone || 0) + 1;
 
-                    if (c.groupe === 'raids') {
-                        let repet = 1;
+                if (perso.raidgatedone === 2) {
+                    perso.raidgatedone = 0;
 
-                        if (c.completAllAtOnce) repet = c.repet;
-
-                        for (let i = 0; i < repet; i++) {
-                            updatedPerso.raid_gate_done = (p.raid_gate_done || 0) + 1;
-                            if (updatedPerso.raid_gate_done === 2) {
-                                updatedPerso.raid_gate_done = 0;
-                                updatedPerso.bloodstones += c.bloodstonesGain;
-                            }
-                        }
-                    } else {
-                        updatedPerso.bloodstones += c.bloodstonesGain;
-                    }
-
-                    return updatedPerso;
+                    perso.bloodstones = (perso.bloodstones + c.bloodstonesGain) > 6000 ? 6000 : (perso.bloodstones + c.bloodstonesGain);
                 }
+            } else {
+                perso.bloodstones = (perso.bloodstones + c.bloodstonesGain) > 6000 ? 6000 : (perso.bloodstones + c.bloodstonesGain);
+            }
+
+            const updatedPersos = persos?.filter(p => p.name !== 'Roster').map(p => {
+                if (p.name === perso.name) {
+                    return { ...perso };
+                }
+
                 return p;
             });
-
-            setPersos(updatedPersos);
 
             updatedUserDataObj = {
                 ...updatedUserDataObj,
                 roster: {
-                    ...userDataObj.roster,
-                    persos: updatedPersos.filter(p => p.name !== 'Roster')
+                    ...updatedUserDataObj.roster,
+                    persos: updatedPersos
                 }
             };
         }
@@ -110,7 +98,7 @@ export default function Dashboard() {
             return t;
         });
 
-        setTasks(updatedTasks);
+        // setTasks(updatedTasks);
 
         updatedUserDataObj = {
             ...updatedUserDataObj,
@@ -130,7 +118,7 @@ export default function Dashboard() {
                     newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].G1;
                     descGold = 'G1 ' + c.name + ' ' + difficulty;
                     montantGold = c[difficulty].G1;
-                    
+
                 } else if (task.done === 2) {
                     newGolds = (updatedUserDataObj.golds.currentGolds || 0) + c[difficulty].G2;
                     descGold = 'G2 ' + c.name + ' ' + difficulty;
@@ -153,7 +141,7 @@ export default function Dashboard() {
                         date: date,
                         gold: newGolds
                     }
-    
+
                     incomeGold = {
                         type: 'Raids',
                         description: descGold,
@@ -284,7 +272,7 @@ export default function Dashboard() {
             ...userDataObj,
             roster: {
                 ...userDataObj.roster,
-                persos: updatedPersos.filter(p => p.name !== 'Roster')
+                persos: updatedPersos?.filter(p => p.name !== 'Roster')
             }
         };
 
@@ -314,15 +302,15 @@ export default function Dashboard() {
         const daysLeft = daysRestants();
 
         const dailyBloodstones = tasks
-            .filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'daily')
-            .reduce((total, task) => {
+            ?.filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'daily')
+            ?.reduce((total, task) => {
                 const category = getCategorieByName(task.idcategorie);
                 return total + ((category.bloodstonesGain || 0) * (category.repet - task.done));
             }, 0);
 
         const weeklyBloodstones = tasks
-            .filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'weekly')
-            .reduce((total, task) => {
+            ?.filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'weekly')
+            ?.reduce((total, task) => {
                 const category = getCategorieByName(task.idcategorie);
                 return total + ((category.bloodstonesGain || 0) * (category.repet - task.done));
             }, 0);
@@ -355,34 +343,6 @@ export default function Dashboard() {
         )
     }
 
-    async function handleCommonData() {
-        try {
-            const newCommonData = { ...commonDataObj }
-
-            // update the current state
-            setCommonData(newCommonData)
-
-            // update the global state
-            setCommonDataObj(newCommonData)
-
-            // update firebase
-            const docRef = doc(db, 'common', 'jeresloa')
-            const res = await setDoc(docRef, {
-                fate_ember_options: []
-            }, { merge: true })
-
-            toast.success('handleCommonData:\nDonnées enregistrées', {
-                style: {
-                    borderRadius: '10px',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-        } catch (err) {
-            console.log('Failed to set data: ', err.message)
-        }
-    }
-
     return (
         <div className='max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 h-full overflow-y-scroll overflow-x-hidden'>
             <div className='grid grid-cols-8 text-gray-300 p-2 border-l border-r border-b border-[#2e3643] sticky top-0 bg-[#1e232d] box-shadow-loa z-10'>
@@ -394,7 +354,7 @@ export default function Dashboard() {
                 <div>Logo</div>
             </div>
             <div className='grid grid-cols-1'>
-                {persos?.map((perso, index) => {
+                {persos?.sort((a, b) => a.order - b.order).map((perso, index) => {
                     const currentHour = parseInt(format(new Date(), 'HH'));
                     const currentDay = getDay(new Date());
                     const previousDay = currentDay === 1 ? 7 : currentDay - 1;
@@ -411,23 +371,31 @@ export default function Dashboard() {
 
                     return (daily?.length > 0 || weekly?.length > 0 || (missingBloodstones(perso) !== '' && perso.trackBloodstones)) && (
                         <div key={index} className='grid grid-cols-8 text-gray-400 px-2 py-4 border-l border-r border-b border-[#2e3643]'>
-                            <h2 className='content-center text-lg'>{perso.name}</h2>
+                            <h2 className='content-center text-lg'><span dangerouslySetInnerHTML={{ __html: getClasseByName(perso.classe)?.icon }} /> {perso.name}</h2>
                             <p className='content-center'>{perso.ilevel}</p>
                             <div className='col-span-2'>
                                 <ul className="flex flex-row flex-wrap gap-2">
                                     {daily.map((task, idx) => (
-                                        <li key={idx} className="flex flex-row items-center gap-2 p-1 rounded-lg cursor-pointer border hover:text-gray-200 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700" onClick={() => handleTaskClick(task)}>
-                                            {task?.artisanatLifeEnergy} <img className="w-[40px]" src={getCategorieByName(task.idcategorie).logo} />
-                                        </li>
+                                        <div key={idx} className='flex flex-row gap-2'>
+                                            {Array.from({ length: getCategorieByName(task.idcategorie).completAllAtOnce ? 1 : (getCategorieByName(task.idcategorie).repet - task.done) }).map((_, imgIdx) => (
+                                                <li key={imgIdx} className="flex flex-row items-center gap-2 p-1 rounded-lg cursor-pointer border hover:text-gray-200 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700" onClick={() => handleTaskClick(task, perso)}>
+                                                    {task?.artisanatLifeEnergy} {task?.rest >= (getCategorieByName(task.idcategorie).maxRest / 5) ? task.rest : null} <img className="w-[40px]" src={getCategorieByName(task.idcategorie).logo} />
+                                                </li>
+                                            ))}
+                                        </div>
                                     ))}
                                 </ul>
                             </div>
                             <div className='col-span-2'>
                                 <ul className="flex flex-row flex-wrap gap-2">
                                     {weekly.map((task, idx) => (
-                                        <li key={idx} className="flex flex-row items-center gap-2 p-1 rounded-lg cursor-pointer border hover:text-gray-200 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700" onClick={() => handleTaskClick(task)}>
-                                            <img className="w-[40px]" src={getCategorieByName(task.idcategorie).logo} />
-                                        </li>
+                                        <div key={idx} className='flex flex-row gap-2'>
+                                            {Array.from({ length: getCategorieByName(task.idcategorie).completAllAtOnce ? 1 : (getCategorieByName(task.idcategorie).repet - task.done) }).map((_, imgIdx) => (
+                                                <li key={imgIdx} className="flex flex-row items-center gap-2 p-1 rounded-lg cursor-pointer border hover:text-gray-200 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700" onClick={() => handleTaskClick(task, perso)}>
+                                                    <img className="w-[40px]" src={getCategorieByName(task.idcategorie).logo} />
+                                                </li>
+                                            ))}
+                                        </div>
                                     ))}
                                 </ul>
                             </div>
@@ -445,20 +413,18 @@ export default function Dashboard() {
                 })}
             </div>
             <div className='h-4'></div>
-            <div className='grid grid-cols-1 border border-[#2e3643]'>
+            <div className='grid grid-cols-1'>
                 {
-                    categories.filter(categorie => categorie.groupe === 'raids').map((raid, indexr) => {
-                        //console.log('raids', raid)
+                    categories?.filter(categorie => categorie.groupe === 'raids').map((raid, indexr) => {
+                        displayRaidPicture = !displayRaidPicture;
 
                         if (tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length > 0) {
-                            displayRaidPicture = !displayRaidPicture;
-
                             return (
                                 <div key={indexr} className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
                                     {displayRaidPicture && (
-                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center bg-[]" style={{ backgroundImage: `url(${raid.image})` }}></div>
+                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
                                     )}
-                                    <div className="col-span-2">
+                                    <div className="col-span-2 flex flex-col">
                                         {
                                             tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).map((task, indext) => {
 
@@ -481,7 +447,7 @@ export default function Dashboard() {
                                                 }
 
                                                 return (
-                                                    <div key={indext} className="grid grid-cols-6 border-b border-[#2e3643] p-2">
+                                                    <div key={indext} className={`grow grid grid-cols-6 ${indext > 0 ? 'border-t' : ''} border-[#2e3643] p-2`}>
                                                         <div className="text-gray-300 content-center">
                                                             <div>{task.idperso}</div>
                                                             <div className='text-xs text-red-700'>{task?.gold ? '' : 'Uncheck golds'}</div>
@@ -498,10 +464,10 @@ export default function Dashboard() {
                                                         <div className="content-center">
                                                             <div dangerouslySetInnerHTML={{ __html: gate }}></div>
                                                         </div>
-                                                        <div className="flex justify-end gap-2">
-                                                            <button onClick={() => handleTaskClick(task, 'NM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.NM.ilevel && (!raid.HM || p.ilevel < raid.HM.ilevel) ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.NM.ilevel}</span> NM</button>
+                                                        <div className="flex justify-end items-center gap-2">
+                                                            <button onClick={() => handleTaskClick(task, p, 'NM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.NM.ilevel && (!raid.HM || p.ilevel < raid.HM.ilevel) ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.NM.ilevel}</span> NM</button>
                                                             {raid.HM && (
-                                                                <button onClick={() => handleTaskClick(task, 'HM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.HM.ilevel ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.HM.ilevel}</span> HM</button>
+                                                                <button onClick={() => handleTaskClick(task, p, 'HM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.HM.ilevel ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.HM.ilevel}</span> HM</button>
                                                             )}
                                                         </div>
                                                     </div>
@@ -510,7 +476,35 @@ export default function Dashboard() {
                                         }
                                     </div>
                                     {!displayRaidPicture && (
-                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center bg-[]" style={{ backgroundImage: `url(${raid.image})` }}></div>
+                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
+                                    )}
+                                </div>
+                            )
+                        } else {
+                            const clear = Math.floor(tasks
+                                ?.filter(task => task.idcategorie === raid.name)
+                                ?.reduce((sum, task) => sum + (task.count / raid.repet), 0)
+                            )
+
+                            const totalIncome = userDataObj.golds.incomes
+                                ?.filter(income => income.description?.includes(raid.name))
+                                ?.reduce((sum, income) => sum + income.montant, 0);
+
+                            return (
+                                <div key={indexr} className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
+                                    {displayRaidPicture && (
+                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
+                                    )}
+
+                                    <div className="col-span-2">
+                                        <div className="flex justify-around items-center h-full">
+                                            <p className="text-lg text-gray-300">Clear { clear } times</p>
+                                            <p className="text-lg text-gray-300">{ totalIncome.toLocaleString('fr-FR') } golds generated</p>
+                                        </div>
+                                    </div>
+
+                                    {!displayRaidPicture && (
+                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
                                     )}
                                 </div>
                             )

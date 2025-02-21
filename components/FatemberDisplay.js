@@ -14,6 +14,7 @@ export default function FatemberDisplay(props) {
     const { demo } = props
     const { currentUser, userDataObj, setUserDataObj, commonDataObj, setCommonDataObj, loading, startDate, setStartDate, endDate, setEndDate } = useAuth()
     const [fate_embers, setFateEmbers] = useState(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))) : userDataObj?.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))));
+    const [search, setSearch] = useState("");
 
     const updateFateEmbers = (type, date) => {
         if (type == 'start') {
@@ -26,11 +27,11 @@ export default function FatemberDisplay(props) {
             setFateEmbers(demo ? demo_fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))) : userDataObj?.fate_embers.filter(t => new Date(t.date) >= new Date(startDate) && new Date(t.date) <= new Date(new Date(endDate).setDate(endDate.getDate() + 1))));
         }
     }
-    
+
     useEffect(() => {
         updateFateEmbers('refresh', null);
     }, [userDataObj]);
-    
+
     if (loading) {
         return <Loading />
     }
@@ -47,12 +48,6 @@ export default function FatemberDisplay(props) {
         //return userDataObj.fate_embers.filter(t => t.type == type && new Date(t.date) >= new Date(fate_ember_start_date) && new Date(t.date) <= new Date(fate_ember_end_date)).length
         return fate_embers?.filter(t => t.type == type).length
     }
-
-    console.log("userDataObj.fate_embers : ", userDataObj.fate_embers);
-    console.log("commonDataObj : ", commonDataObj);
-    console.log("fate_embers : ", fate_embers);
-    console.log("startDate : ", startDate);
-    console.log("endDate : ", endDate);
 
     const dataBarChart = {
         labels: [
@@ -384,10 +379,10 @@ export default function FatemberDisplay(props) {
                                 </span>
                                 <span className='text-gray-400'>
                                     (
-                                        {fate_embers?.filter(fe => fe.type.includes('golds')).reduce((total, fe) => {
-                                            const option = commonDataObj.fate_ember_options.find(option => option.idfateember === fe.type);
-                                            return total + (option?.value || 0);
-                                        }, 0).toLocaleString('fr-FR')}
+                                    {fate_embers?.filter(fe => fe.type.includes('golds')).reduce((total, fe) => {
+                                        const option = commonDataObj.fate_ember_options.find(option => option.idfateember === fe.type);
+                                        return total + (option?.value || 0);
+                                    }, 0).toLocaleString('fr-FR')}
                                     )
                                 </span>
                             </div>
@@ -401,10 +396,10 @@ export default function FatemberDisplay(props) {
                                 </span>
                                 <span className='text-gray-400'>
                                     (
-                                        {fate_embers?.filter(fe => fe.type.includes('silver')).reduce((total, fe) => {
-                                            const option = commonDataObj.fate_ember_options.find(option => option.idfateember === fe.type);
-                                            return total + (option?.value || 0);
-                                        }, 0).toLocaleString('fr-FR')}
+                                    {fate_embers?.filter(fe => fe.type.includes('silver')).reduce((total, fe) => {
+                                        const option = commonDataObj.fate_ember_options.find(option => option.idfateember === fe.type);
+                                        return total + (option?.value || 0);
+                                    }, 0).toLocaleString('fr-FR')}
                                     )
                                 </span>
                             </div>
@@ -422,22 +417,34 @@ export default function FatemberDisplay(props) {
                     </div>
                 </div>
                 <div className='row-span-2 border-l border-r border-[#2e3643] overflow-y-scroll overflow-x-hidden'>
-                    {fate_embers?.sort((a, b) => new Date(b.date) - new Date(a.date)).map((fe, feIndex) => {
-                        //console.log(fe.type);
-                        //console.log(commonDataObj.fate_ember_options.find(option => option.idfateember === fe.type)?.logo);
+                    <div className="sticky top-0 p-2 pt-3 bg-[#1e232d] z-10 border-b border-r border-[#2e3643]">
+                        <div className="relative z-0 w-full my-2 group">
+                            <input
+                                type="text"
+                                id="fatember_search_input"
+                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=""
+                                value={search}
+                                onChange={e => setSearch(e.target.value)}
+                            />
+                            <label htmlFor="fatember_search_input" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Search:</label>
+                        </div>
+                    </div>
+                    <div>
+                        {fate_embers?.filter(fe => fe?.perso?.toLowerCase().includes(search?.toLowerCase()) || fe?.type?.toLowerCase().includes(search?.toLowerCase()))?.sort((a, b) => new Date(b.date) - new Date(a.date)).map((fe, feIndex) => {
+                            const option = commonDataObj.fate_ember_options.find(option => option.idfateember === fe.type);
 
-                        const option = commonDataObj.fate_ember_options.find(option => option.idfateember === fe.type);
-
-                        return (
-                            <div key={feIndex} className='flex flex-row items-center justify-between border-b border-[#2e3643] my-2'>
-                                <div className='flex flex-col gap-2 p-2'>
-                                    <div className='text-gray-300'>{option?.name}</div>
-                                    <div className='text-gray-400'>{fe.perso} le {new Date(fe.date).toLocaleDateString('fr-FR')}</div>
+                            return (
+                                <div key={feIndex} className='flex flex-row items-center justify-between border-b border-r border-[#2e3643]'>
+                                    <div className='flex flex-col gap-2 p-2'>
+                                        <div className='text-gray-300'>{option?.name}</div>
+                                        <div className='text-gray-400'>{fe.perso} le {new Date(fe.date).toLocaleDateString('fr-FR')}</div>
+                                    </div>
+                                    <img src={option?.logo} alt={fe.type} className='w-[48px] h-[48px] mr-2' />
                                 </div>
-                                <img src={option?.logo} alt={fe.type} className='w-[48px] h-[48px] mr-2' />
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                 </div>
                 <div className='row-span-2 col-span-2 border-r border-[#2e3643] p-2'>
                     <div className='h-full w-full' style={{ margin: "0 auto" }}>

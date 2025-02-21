@@ -1,4 +1,4 @@
-import { format, getDay, subDays } from 'date-fns'
+import { format, getDay, subDays, getWeek } from 'date-fns'
 
 export const demo_perso = [
     {
@@ -9,7 +9,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": false,
         "logo": "images/class_10.png",
-        "icon": "<i class=\"fa-solid fa-circle\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Selfie_20241122_Jeresayaya_045.jpg"
     },
     {
@@ -20,7 +20,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": false,
         "logo": "images/class_10.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Selfie_20241126_Imanyrae_001.jpg"
     },
     {
@@ -31,7 +31,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": false,
         "logo": "images/class_10.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Selfie_20241126_Imanyrae_001.jpg"
     },
     {
@@ -44,7 +44,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": true,
         "logo": "images/class_artist.png",
-        "icon": "<i class=\"fa-solid fa-paintbrush\" style=\"color: #f63489;\"></i>",
+        "icon": "<i className=\"fa-solid fa-paintbrush\" style=\"color: #f63489;\"></i>",
         "image": "images/Selfie_20241130_Jeresayaya_005.jpg",
         "current_fragments": 375,
         "raid_gate_done": 1,
@@ -211,7 +211,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": true,
         "logo": "images/class_bard.png",
-        "icon": "<i class=\"fa-solid fa-music\" style=\"color: #cf2a43;\"></i>",
+        "icon": "<i className=\"fa-solid fa-music\" style=\"color: #cf2a43;\"></i>",
         "image": "images/Selfie_20241128_Jeresunshine_012.jpg",
         "current_fragments": 306,
         "raid_gate_done": 0,
@@ -284,7 +284,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": true,
         "logo": "images/class_aeromancer.png",
-        "icon": "<i class=\"fa-solid fa-umbrella\" style=\"color: #ad25a0;\"></i>",
+        "icon": "<i className=\"fa-solid fa-umbrella\" style=\"color: #ad25a0;\"></i>",
         "image": "images/Selfie_20241122_Jerescelestia_002.jpg",
         "current_fragments": 281,
         "raid_gate_done": 0,
@@ -423,7 +423,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": true,
         "logo": "images/class_bard.png",
-        "icon": "<i class=\"fa-solid fa-music\" style=\"color: #f795d4;\"></i>",
+        "icon": "<i className=\"fa-solid fa-music\" style=\"color: #f795d4;\"></i>",
         "image": "images/Selfie_20241122_Jeresbard_017.jpg",
         "current_fragments": 486,
         "raid_gate_done": 0,
@@ -526,7 +526,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": true,
         "logo": "images/class_bard.png",
-        "icon": "<i class=\"fa-solid fa-music\" style=\"color: #ffdf7a;\"></i>",
+        "icon": "<i className=\"fa-solid fa-music\" style=\"color: #ffdf7a;\"></i>",
         "image": "images/Selfie_20241130_Jeresakura_011.jpg",
         "imageold": "images/Selfie_20241122_Jeresakura_006.jpg",
         "current_fragments": 474,
@@ -625,7 +625,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": true,
         "logo": "images/class_artist.png",
-        "icon": "<i class=\"fa-solid fa-paintbrush\" style=\"color: #efe3bd;\"></i>",
+        "icon": "<i className=\"fa-solid fa-paintbrush\" style=\"color: #efe3bd;\"></i>",
         "image": "images/Selfie_20241122_Jereseraphina_002.jpg",
         "current_fragments": 313,
         "raid_gate_done": 0,
@@ -885,7 +885,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": true,
         "logo": "images/class_sorceress.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Selfie_20241122_Imanyrae_006.jpg",
         "h_ilevel": []
     },
@@ -899,7 +899,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": true,
         "logo": "images/class_artist.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Selfie_20241102_Jeresketch_000.jpg",
         "h_ilevel": []
     },
@@ -913,7 +913,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_paladin.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Shadow11.jpg",
         "h_ilevel": []
     },
@@ -927,7 +927,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_shadowhunter.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Drevana11.jpg",
         "h_ilevel": []
     },
@@ -941,7 +941,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_slayer.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/",
         "h_ilevel": []
     },
@@ -955,7 +955,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_db.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/",
         "h_ilevel": []
     },
@@ -969,7 +969,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_scouter.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/",
         "h_ilevel": []
     },
@@ -983,7 +983,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_zerk.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/",
         "h_ilevel": []
     },
@@ -997,7 +997,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_aeromancer.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/",
         "h_ilevel": []
     },
@@ -1011,7 +1011,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_wardancer.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/",
         "h_ilevel": []
     },
@@ -1025,7 +1025,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_paladin.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/",
         "h_ilevel": []
     },
@@ -1039,7 +1039,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/class_ss.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/",
         "h_ilevel": []
     },
@@ -1051,7 +1051,7 @@ export const demo_perso = [
         "repos": true,
         "track_fate_ember": false,
         "logo": "images/rosterlogo.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/roster1.jpg"
     },
     {
@@ -1064,7 +1064,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": false,
         "logo": "images/class_gl.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Selfie_20240329_Chadsunshine_002.jpg",
         "h_ilevel": []
     },
@@ -1078,7 +1078,7 @@ export const demo_perso = [
         "repos": false,
         "track_fate_ember": false,
         "logo": "images/class_se.png",
-        "icon": "<i class=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
+        "icon": "<i className=\"fa-solid fa-circle-half-stroke\" style=\"color: #CDCDCD;\"></i>",
         "image": "images/Selfie_20240329_Chadsunshine_002.jpg",
         "h_ilevel": []
     }
@@ -1161,132 +1161,164 @@ export const classes = [
     {
         "name": "Berserker",
         "logo": "images/class_zerk.png",
+        "icon": "<i class=\"fa-solid fa-gavel\" style=\"color: #ff0000;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Destroyer",
         "logo": "images/class_destroyer.png",
+        "icon": "<i class=\"fa-solid fa-hammer\" style=\"color: #8b4513;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Gunlancer",
         "logo": "images/class_gl.png",
+        "icon": "<i class=\"fa-solid fa-shield\" style=\"color: #0000ff;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Paladin",
         "logo": "images/class_paladin.png",
+        "icon": "<i class=\"fa-solid fa-cross\" style=\"color: #ffff00;\"></i>",
         "type": "Support"
     },
     {
         "name": "Slayer",
         "logo": "images/class_slayer.png",
+        "icon": "<i class=\"fa-solid fa-bolt\" style=\"color: #ff4500;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Breaker",
         "logo": "images/class_breaker.png",
+        "icon": "<i class=\"fa-solid fa-shield\" style=\"color: #8b0000;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Striker",
         "logo": "images/class_striker.png",
+        "icon": "<i class=\"fa-solid fa-hand-rock\" style=\"color: #ff8c00;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Glaivier",
         "logo": "images/class_glaivier.png",
+        "icon": "<i class=\"fa-solid fa-fan\" style=\"color: #00ff00;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Soulfist",
         "logo": "images/class_soulfist.png",
+        "icon": "<i class=\"fa-solid fa-hand-sparkles\" style=\"color: #ff69b4;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Scrapper",
         "logo": "images/class_scrapper.png",
+        "icon": "<i class=\"fa-solid fa-hand-back-fist\" style=\"color: #a52a2a;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Wardancer",
         "logo": "images/class_wardancer.png",
+        "icon": "<i class=\"fa-solid fa-dove\" style=\"color: #ff1493;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Arcana",
         "logo": "images/class_arcana.png",
+        "icon": "<i class=\"fa-solid fa-hat-wizard\" style=\"color: #800080;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Bard",
         "logo": "images/class_bard.png",
+        "icon": "<i class=\"fa-solid fa-music\" style=\"color: #ff69b4;\"></i>",
         "type": "Support"
     },
     {
         "name": "Sorceress",
         "logo": "images/class_sorceress.png",
+        "icon": "<i class=\"fa-solid fa-fire\" style=\"color: #ff4500;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Summoner",
         "logo": "images/class_summoner.png",
+        "icon": "<i class=\"fa-solid fa-dragon\" style=\"color: #32cd32;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Artillerist",
         "logo": "images/class_arti.png",
+        "icon": "<i class=\"fa-solid fa-bomb\" style=\"color: #808080;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Deadeye",
         "logo": "images/class_deadeye.png",
+        "icon": "<i class=\"fa-solid fa-crosshairs\" style=\"color: #000000;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Scouter",
         "logo": "images/class_scouter.png",
+        "icon": "<i class=\"fa-solid fa-robot\" style=\"color: #4682b4;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Sharpshooter",
         "logo": "images/class_ss.png",
+        "icon": "<i class=\"fa-solid fa-bullseye\" style=\"color: #228b22;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Gunslinger",
         "logo": "images/class_gs.png",
+        "icon": "<i class=\"fa-solid fa-gun\" style=\"color: #696969;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Deathblade",
         "logo": "images/class_db.png",
+        "icon": "<i class=\"fa-solid fa-skull\" style=\"color: #4b0082;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Reaper",
         "logo": "images/class_reaper.png",
+        "icon": "<i class=\"fa-solid fa-ghost\" style=\"color: #000000;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Shadowhunter",
         "logo": "images/class_shadowhunter.png",
+        "icon": "<i class=\"fa-solid fa-moon\" style=\"color: #8b0000;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Souleater",
         "logo": "images/class_se.png",
+        "icon": "<i class=\"fa-solid fa-ghost\" style=\"color: #800080;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Aeromancer",
         "logo": "images/class_aeromancer.png",
+        "icon": "<i class=\"fa-solid fa-umbrella\" style=\"color: #87CEEB;\"></i>",
         "type": "DPS"
     },
     {
         "name": "Artist",
         "logo": "images/class_artist.png",
+        "icon": "<i class=\"fa-solid fa-paint-brush\" style=\"color: #f63489;\"></i>",
         "type": "Support"
+    },
+    {
+        "name": "Wildsoul",
+        "logo": "images/class_aeromancer.png",
+        "icon": "<i class=\"fa-solid fa-paw\" style=\"color: #8b4513;\"></i>",
+        "type": "DPS"
     }
 ]
 
@@ -1302,7 +1334,9 @@ export const categories = [
         "completAllAtOnce": true,
         "logo": "images/all_quest.webp",
         "image": "",
-        "inputs": []
+        "inputs": [
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
     },
     {
         "idcategorie": "c_stronghold_merchant",
@@ -1315,7 +1349,9 @@ export const categories = [
         "completAllAtOnce": true,
         "logo": "images/castle.svg",
         "image": "",
-        "inputs": []
+        "inputs": [
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
     },
     {
         "idcategorie": "c_stronghold_activities",
@@ -1328,7 +1364,9 @@ export const categories = [
         "completAllAtOnce": true,
         "logo": "images/castle.svg",
         "image": "",
-        "inputs": []
+        "inputs": [
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
     },
     {
         "idcategorie": "c_chaos_gate",
@@ -1341,8 +1379,10 @@ export const categories = [
         "completAllAtOnce": true,
         "logo": "images/chaos_gate.png",
         "image": "",
-        "horaire": [1, 4, 6, 7],
-        "inputs": []
+        "horaire": [1, 4, 6, 0],
+        "inputs": [
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
     },
     {
         "idcategorie": "c_world_boss",
@@ -1355,8 +1395,10 @@ export const categories = [
         "completAllAtOnce": true,
         "logo": "images/island.webp",
         "image": "",
-        "horaire": [2, 5, 7],
-        "inputs": []
+        "horaire": [2, 5, 0],
+        "inputs": [
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
     },
     {
         "idcategorie": "c_fouille",
@@ -1372,7 +1414,8 @@ export const categories = [
         "inputs": [
             { "type": "number", "id": "tasksconfig_artisanatGainPer10Minutes_input", "var": "artisanatGainPer10Minutes", "name": "Artisanat Gain Per 10 Minutes" },
             { "type": "number", "id": "tasksconfig_artisanatMaxLifeEnergy_input", "var": "artisanatMaxLifeEnergy", "name": "Artisanat Max Life Energy" },
-            { "type": "number", "id": "tasksconfig_artisanatLifeEnergy_input", "var": "artisanatLifeEnergy", "name": "Artisanat Life Energy" }
+            { "type": "number", "id": "tasksconfig_artisanatLifeEnergy_input", "var": "artisanatLifeEnergy", "name": "Artisanat Life Energy" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1391,7 +1434,8 @@ export const categories = [
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
-            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1408,7 +1452,8 @@ export const categories = [
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
-            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1426,7 +1471,8 @@ export const categories = [
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
-            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1444,7 +1490,8 @@ export const categories = [
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
-            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1463,7 +1510,8 @@ export const categories = [
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
-            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1482,7 +1530,8 @@ export const categories = [
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
-            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" }
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1519,7 +1568,9 @@ export const categories = [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
             { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" }
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
+            { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
         ]
     },
     {
@@ -1556,7 +1607,9 @@ export const categories = [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
             { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" }
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
+            { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
         ]
     },
     {
@@ -1601,7 +1654,9 @@ export const categories = [
             { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
             { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
             { "type": "checkbox", "id": "tasksconfig_coffreG3_input", "var": "coffreG3", "name": "Coffre G3" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG4_input", "var": "coffreG4", "name": "Coffre G4" }
+            { "type": "checkbox", "id": "tasksconfig_coffreG4_input", "var": "coffreG4", "name": "Coffre G4" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
+            { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
         ]
     },
     {
@@ -1638,7 +1693,9 @@ export const categories = [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
             { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" }
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
+            { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
         ]
     },
     {
@@ -1667,7 +1724,9 @@ export const categories = [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
             { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" }
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
+            { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
         ]
     },
 
@@ -1684,7 +1743,8 @@ export const categories = [
         "image": "",
         "bloodstonesGain": 220,
         "inputs": [
-            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1699,7 +1759,8 @@ export const categories = [
         "logo": "images/pirate_coin.png",
         "image": "",
         "inputs": [
-            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1714,7 +1775,8 @@ export const categories = [
         "logo": "images/weekly.webp",
         "image": "",
         "inputs": [
-            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1729,7 +1791,8 @@ export const categories = [
         "logo": "images/sylmael.png",
         "image": "",
         "inputs": [
-            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     },
     {
@@ -1744,7 +1807,8 @@ export const categories = [
         "logo": "images/legion_raid.png",
         "image": "",
         "inputs": [
-            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" }
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
         ]
     }
 ]
@@ -1867,13 +1931,31 @@ export const gold_types = [
 export const MAX_BLOODSTONES = 6000;
 
 export const getLastWednesday = () => {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
-    const lastWednesday = new Date(today);
-    lastWednesday.setDate(today.getDate() - ((dayOfWeek + 4) % 7));
-    lastWednesday.setHours(0, 0, 0, 0);
+    const lastWednesday = new Date();
+
+    // Ajuste la date jusqu'au dernier mercredi
+    while (lastWednesday.getDay() !== 3) {
+        lastWednesday.setDate(lastWednesday.getDate() - 1);
+    }
+
+    lastWednesday.setHours(11, 0, 0, 0);
+
     return lastWednesday;
-}
+};
+
+export const getSecondLastWednesday = () => {
+    const secondLastWednesday = new Date();
+  
+    // Ajuste la date jusqu'au mercredi précédent
+    while (secondLastWednesday.getDay() !== 3) {
+      secondLastWednesday.setDate(secondLastWednesday.getDate() - 1);
+    }
+    
+    // Reculer de 7 jours supplémentaires pour obtenir le mercredi de la semaine précédente
+    secondLastWednesday.setDate(secondLastWednesday.getDate() - 7);
+  
+    return secondLastWednesday;
+  };
 
 export const getNextWednesday = () => {
     const today = new Date();
@@ -1883,6 +1965,15 @@ export const getNextWednesday = () => {
     nextWednesday.setHours(0, 0, 0, 0);
     return nextWednesday;
 }
+
+export const getWeekNumber = (date) => {
+    return getWeek(date, { weekStartsOn: 3 }); // La semaine commence le lundi
+};
+
+export const isThaemineWeek = (date) => {
+    const weekNumber = getWeekNumber(date);
+    return weekNumber % 2 === 0;
+};
 
 export const daysRestants = () => {
     const substract = format(new Date(), 'H') < 11 ? 1 : 0;

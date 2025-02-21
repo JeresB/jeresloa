@@ -12,10 +12,10 @@ import { Comfortaa } from 'next/font/google'
 const ComfortaaSans = Comfortaa({ subsets: ["latin"] });
 
 export default function Fatember() {
-    const { currentUser, userDataObj, setUserDataObj, commonDataObj, loading } = useAuth()
-    const [fateEmberDrawerOpen, setFateEmberDrawerOpen] = useState(false)
-    const [fateEmberSelectedPerso, setFateEmberSelectedPerso] = useState(null)
-    const [fateEmberSelectedOption, setFateEmberSelectedOption] = useState(null)
+    const { currentUser, userDataObj, setUserDataObj, commonDataObj, loading } = useAuth();
+    const [fateEmberDrawerOpen, setFateEmberDrawerOpen] = useState(false);
+    const [fateEmberSelectedPerso, setFateEmberSelectedPerso] = useState(null);
+    const [fateEmberSelectedOption, setFateEmberSelectedOption] = useState(null);
 
     const handleClickOutsideFE = (event) => {
         if (fateEmberDrawerOpen && !event.target.closest('#fate-ember-drawer')) {
@@ -29,14 +29,6 @@ export default function Fatember() {
             document.removeEventListener('mousedown', handleClickOutsideFE)
         };
     }, [fateEmberDrawerOpen])
-
-    if (loading) {
-        return <Loading />
-    }
-
-    if (!currentUser) {
-        return null
-    }
 
     // Setter Selected Perso
     const handleSelectionPersoClick = (val) => {
@@ -56,20 +48,21 @@ export default function Fatember() {
     }
     // --------------------------------------------------------------------------------
 
-    const nbBeforeThisWeek = userDataObj.fate_embers.filter(fe => new Date(fe.date) < getLastWednesday()).length
+    const nbBeforeThisWeek = userDataObj?.fate_embers?.filter(fe => new Date(fe.date) < getLastWednesday()).length;
+    const nbThisWeek = userDataObj?.fate_embers?.filter(fe => new Date(fe.date) >= getLastWednesday()).length;
 
     async function handleAddFateEmber(perso, fe) {
         try {
-            const newData = { ...userDataObj }
+            const newData = { ...userDataObj };
 
             if (perso && fe) {
-                console.log(perso, fe)
+                //console.log(perso, fe);
 
                 if (!newData?.fate_embers) {
-                    newData.fate_embers = []
+                    newData.fate_embers = [];
                 }
                 
-                //console.log(newData)
+                //console.log(newData);
 
                 const newFe = {
                     perso: perso,
@@ -118,11 +111,11 @@ export default function Fatember() {
                 setUserDataObj(newData);
 
                 // update firebase
-                const docRef = doc(db, 'users', currentUser.uid)
-                const res = await setDoc(docRef, newData)
+                const docRef = doc(db, 'users', currentUser.uid);
+                const res = await setDoc(docRef, newData);
 
-                const perso_data = demo_perso.find(p => p.idperso === perso)
-                const fe_data = commonDataObj.fate_ember_options.find(e => e.idfateember === fe)
+                const perso_data = userDataObj?.roster?.persos.find(p => p.name === perso);
+                const fe_data = commonDataObj?.fate_ember_options.find(e => e.idfateember === fe);
 
                 //console.log(perso_data, fe_data)
 
@@ -134,8 +127,8 @@ export default function Fatember() {
                     },
                 });
 
-                setFateEmberSelectedPerso(null)
-                setFateEmberSelectedOption(null)
+                setFateEmberSelectedPerso(null);
+                setFateEmberSelectedOption(null);
 
                 document.querySelectorAll('input[name="fateemberperso"]').forEach(input => {
                     input.checked = false;
@@ -150,25 +143,25 @@ export default function Fatember() {
                 updateFateEmbers('refresh', null);
             }
         } catch (err) {
-            console.log('Failed to set data: ', err.message)
+            console.log('Failed to set data: ', err.message);
         }
     }
+
+    if (!currentUser || loading) return null;
 
     return (
         <div>
             <button onClick={handleFateEmberDrawerClick} className={"w-full inline-flex gap-6 items-center justify-between p-2 border rounded-lg cursor-pointer text-gray-300 bg-gray-800 hover:text-gray-200 hover:bg-gray-700 border-gray-700 " + ComfortaaSans.className}>
                 <div className="block min-w-[120px]">
-                    <div className="w-full text-left">{userDataObj.fate_embers.length}</div>
-                    <div className="w-full text-left text-gray-400">Starting at {nbBeforeThisWeek}</div>
+                    <div className="w-full text-left">{userDataObj?.fate_embers?.length.toLocaleString('fr-FR')}</div>
+                    <div className="w-full text-left text-gray-400">+{nbThisWeek?.toLocaleString('fr-FR')}</div>
                 </div>
                 <img className="w-[32px]" src="images/use_11_221.webp" />
             </button>
 
-            <div id="fate-ember-drawer" className={'fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform bg-white w-[20vw] dark:bg-gray-800 ' + (!fateEmberDrawerOpen ? ' -translate-x-full ' : '')} tabIndex="-1" aria-labelledby="drawer-label">
+            <div id="fate-ember-drawer" className={'fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform bg-white w-[20vw] dark:bg-gray-800 ' + ComfortaaSans.className + (!fateEmberDrawerOpen ? ' -translate-x-full ' : '')} tabIndex="-1" aria-labelledby="drawer-label">
                 <div className='flex flex-col gap-4'>
-                    <h5 id="drawer-label" className="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg className="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                    </svg>Ajout Fate Ember</h5>
+                    <div className='text-lg'>Ajout Fate Ember</div>
 
                     <button type="button" onClick={handleFateEmberDrawerClick} data-drawer-hide="drawer-example" aria-controls="drawer-example" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
                         <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -177,23 +170,25 @@ export default function Fatember() {
                         <span className="sr-only">Close menu</span>
                     </button>
 
+                    <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
+
                     <ul className="flex flex-row flex-wrap gap-2">
-                        {demo_perso.map((perso, index) => {
+                        {userDataObj?.roster?.persos?.map((perso, index) => {
                             if (perso.track_fate_ember) {
                                 return (
-                                    <li className="h-full" style={{ flex: '1 1 180px' }} key={index} onChange={() => handleSelectionPersoClick(perso.idperso)}>
-                                        <input type="radio" id={"fateemberperso-" + perso.idperso} name="fateemberperso" value={perso.idperso} className="hidden peer js-fate-ember" required="" />
+                                    <li className="h-full" style={{ flex: '1 1 180px' }} key={index} onChange={() => handleSelectionPersoClick(perso.name)}>
+                                        <input type="radio" id={"fateemberperso-" + perso.idperso} name="fateemberperso" value={perso.name} className="hidden peer js-fate-ember" required="" />
                                         <label htmlFor={"fateemberperso-" + perso.idperso} className="inline-flex items-center justify-between h-full w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div className="block">
-                                                <div className={"w-full text-md font-semibold " + ComfortaaSans.className}>{perso.name}</div>
-                                                <div className={"w-full text-xs " + ComfortaaSans.className}>{perso.classe} - {perso.ilevel}</div>
+                                                <div className="w-full text-md font-semibold">{perso.name}</div>
+                                                <div className="w-full text-xs">{perso.classe} - {perso.ilevel}</div>
                                             </div>
                                             <img className="" style={{ width: '36px' }} src={perso.logo} />
                                         </label>
                                     </li>
                                 )
                             } else {
-                                return null
+                                return null;
                             }
                         })}
                     </ul>
@@ -207,8 +202,8 @@ export default function Fatember() {
                                     <input type="radio" id={"fateembertype-" + fe.idfateember} name="fateembertype" value={fe.idfateember} className="hidden peer js-fate-ember" required="" />
                                     <label htmlFor={"fateembertype-" + fe.idfateember} className="inline-flex items-center justify-between h-full w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                         <div className="block">
-                                            <div className={"w-full text-md font-semibold " + ComfortaaSans.className}>{fe.short_name}</div>
-                                            <div className={"w-full text-xs " + ComfortaaSans.className}>{fe.type}</div>
+                                            <div className="w-full text-md font-semibold">{fe.short_name}</div>
+                                            <div className="w-full text-xs">{fe.type}</div>
                                         </div>
                                         <img className="" style={{ width: '36px' }} src={fe.logo} />
                                     </label>

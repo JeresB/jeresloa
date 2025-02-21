@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function Login() {
 
-    const { currentUser, loginWithGithub, logout } = useAuth();
+    const { currentUser, loginWithGithub, loginWithGoogle, logout } = useAuth();
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleAvatarClick = () => {
@@ -54,6 +54,11 @@ export default function Login() {
                                     </Link>
                                 </li>
                                 <li>
+                                    <Link href={'/raidstracker'}>
+                                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><button>Raids Tracker</button></div>
+                                    </Link>
+                                </li>
+                                <li>
                                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><button onClick={logout}>Logout</button></a>
                                 </li>
                             </ul>
@@ -61,7 +66,10 @@ export default function Login() {
                     )}
                 </div>
             ) : (
-                <button onClick={loginWithGithub}>Login with GitHub</button>
+                <div className='flex flex-row flex-nowrap gap-2'>
+                    <button onClick={loginWithGoogle} className='text-gray-500 hover:text-gray-200'><i className="fa-brands fa-2xl fa-google"></i></button>
+                    <button onClick={loginWithGithub} className='text-gray-500 hover:text-gray-200'><i className="fa-brands fa-2xl fa-github"></i></button>
+                </div>
             )}
         </div>
     )

@@ -9,7 +9,7 @@ import { doc, updateDoc } from 'firebase/firestore'
 import { v4 as uuidv4 } from 'uuid';
 
 export default function TasksConfig() {
-    const { currentUser, userDataObj, setUserDataObj, commonDataObj, setCommonDataObj, loading, resetDaily } = useAuth()
+    const { currentUser, userDataObj, setUserDataObj, commonDataObj, setCommonDataObj, loading, resetDaily } = useAuth();
     const [tasks, setTasks] = useState(null);
     const [filteredTasks, setFilteredTasks] = useState(null);
     const [search, setSearch] = useState("");
@@ -31,12 +31,8 @@ export default function TasksConfig() {
     }, [userDataObj]);
 
     useEffect(() => {
-        console.log("updating selectedTask: ", selectedTask);
 
         if (selectedTask.idtask != "") {
-            //console.log("updating selectedTask: ", selectedTask);
-
-            
             const updatedTasks = tasks.map(task =>
                 task.idtask === selectedTask.idtask ? selectedTask : task
             );
@@ -254,7 +250,7 @@ export default function TasksConfig() {
                         </datalist>
 
                         <datalist id="list-persos">
-                            {userDataObj.roster.persos.map((perso, index) => (
+                            {userDataObj?.roster?.persos.map((perso, index) => (
                                 <option key={index} value={perso?.name} label={perso?.classe + ' ' + perso?.ilevel} />
                             ))}
                         </datalist>

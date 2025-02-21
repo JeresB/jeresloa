@@ -51,11 +51,6 @@ export default function GoldsDrawer() {
 
     }, [goldsDrawerOpen]);
 
-    useEffect(() => {
-        console.log("[Golds Drawer][useEffect on userDataObj] userDataObj: ", userDataObj);
-
-    }, [userDataObj]);
-
     const addIncome = () => {
         if (income.type && (cost || after )) {
             let montant = 0;
@@ -75,8 +70,6 @@ export default function GoldsDrawer() {
                 date: new Date().toISOString(),
                 perso: income.perso || 'Roster'
             };
-
-            //console.log(userDataObj.golds.currentGolds, income, newIncome);
 
             const updatedUserData = {
                 ...userDataObj,
@@ -124,11 +117,9 @@ export default function GoldsDrawer() {
     
     const updateGold = () => {
         if (update) {
-            console.log(update, userDataObj.golds);
-
             const montant = parseInt(update) - parseInt(userDataObj.golds.currentGolds);
-
             const newGolds = parseInt(update);
+            
             const updatedUserData = {
                 ...userDataObj,
                 golds: {
@@ -175,23 +166,13 @@ export default function GoldsDrawer() {
         setGoldsDrawerOpen(!goldsDrawerOpen);
     }
 
-    if (loading) {
-        return <Loading />;
-    }
-
-    if (!currentUser) {
-        return null;
-    }
-
-    const lastWednesday = getLastWednesday();
-    const lastWednesdayGold = userDataObj.golds.historiques.find(hist => new Date(hist.date).toDateString() === lastWednesday.toDateString())?.gold || 0;
+    if (!currentUser || loading) return null;
 
     return (
         <div>
             <button onClick={handleGoldsDrawerClick} className="w-full inline-flex gap-6 items-center justify-between p-2 border rounded-lg cursor-pointer text-gray-300 bg-gray-800 hover:text-gray-200 hover:bg-gray-700 border-gray-700">
                 <div className={"block min-w-[120px] " + ComfortaaSans.className}>
-                    <div className="w-full text-left">{userDataObj.golds.currentGolds}</div>
-                    <div className="w-full text-left text-gray-400">Starting at {lastWednesdayGold}</div>
+                    <div className="w-full text-left">{userDataObj.golds.currentGolds.toLocaleString('fr-FR')}</div>
                 </div>
                 <img className="w-[32px]" src="images/money_4.webp" />
             </button>
@@ -324,7 +305,7 @@ export default function GoldsDrawer() {
                     </datalist>
 
                     <datalist id="list-persos">
-                        {userDataObj.roster.persos.map((perso, index) => (
+                        {userDataObj?.roster?.persos?.map((perso, index) => (
                             <option key={index} value={perso?.name} label={perso?.classe + ' ' + perso?.ilevel} />
                         ))}
                     </datalist>
