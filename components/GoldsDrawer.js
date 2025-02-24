@@ -92,19 +92,33 @@ export default function GoldsDrawer() {
 
             setUserDataObj(updatedUserData);
 
+            setIncome({
+                'type': '',
+                'description': '',
+                'categorie': '',
+                'perso': '',
+                'montant': '',
+                'date': ''
+            });
+
+            setCost('');
+            setBefore('');
+            setAfter('');
+
+            setGoldsDrawerOpen(false);
+
             const userDocRef = doc(db, 'users', currentUser.uid);
             setDoc(userDocRef, updatedUserData, { merge: true })
                 .then(() => {
-                    toast.success('Income added successfully');
-                    setIncome({
-                        'type': '',
-                        'description': '',
-                        'categorie': '',
-                        'perso': '',
-                        'montant': '',
-                        'date': ''
+                    toast.success(`${income.type} (${montant}) income added successfully for ${newIncome.perso}`, {
+                        position: 'top-right',
+                        duration: 3000,
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        },
                     });
-                    setGoldsDrawerOpen(false);
                 })
                 .catch((error) => {
                     console.error('Error adding income: ', error);
@@ -148,12 +162,21 @@ export default function GoldsDrawer() {
 
             setUserDataObj(updatedUserData);
 
+            setUpdate('');
+            setGoldsDrawerOpen(false);
+
             const userDocRef = doc(db, 'users', currentUser.uid);
             setDoc(userDocRef, updatedUserData, { merge: true })
                 .then(() => {
-                    toast.success('Golds updated successfully');
-                    setUpdate('');
-                    setGoldsDrawerOpen(false);
+                    toast.success(`Golds updated successfully`, {
+                        position: 'top-right',
+                        duration: 3000,
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        },
+                    });
                 })
                 .catch((error) => {
                     console.error('Error updating golds: ', error);

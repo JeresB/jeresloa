@@ -238,7 +238,9 @@ export default function Dashboard() {
         const docRef = doc(db, 'users', currentUser.uid);
         setDoc(docRef, updatedUserDataObj, { merge: true })
             .then(() => {
-                toast.success('Task updated successfully', {
+                toast.success(`Task ${c.name} checked successfully for ${perso.name}`, {
+                    position: 'top-right',
+                    duration: 3000,
                     style: {
                         borderRadius: '10px',
                         background: '#333',
@@ -281,7 +283,9 @@ export default function Dashboard() {
         const docRef = doc(db, 'users', currentUser.uid);
         setDoc(docRef, updatedUserDataObj, { merge: true })
             .then(() => {
-                toast.success('Bloodstones updated successfully', {
+                toast.success(`220 Bloodstones added successfully for ${perso.name}`, {
+                    position: 'top-right',
+                    duration: 3000,
                     style: {
                         borderRadius: '10px',
                         background: '#333',

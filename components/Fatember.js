@@ -51,18 +51,14 @@ export default function Fatember() {
     const nbBeforeThisWeek = userDataObj?.fate_embers?.filter(fe => new Date(fe.date) < getLastWednesday()).length;
     const nbThisWeek = userDataObj?.fate_embers?.filter(fe => new Date(fe.date) >= getLastWednesday()).length;
 
-    async function handleAddFateEmber(perso, fe) {
+    const handleAddFateEmber = (perso, fe) => {
         try {
             const newData = { ...userDataObj };
 
             if (perso && fe) {
-                //console.log(perso, fe);
-
                 if (!newData?.fate_embers) {
                     newData.fate_embers = [];
                 }
-                
-                //console.log(newData);
 
                 const newFe = {
                     perso: perso,
@@ -73,7 +69,7 @@ export default function Fatember() {
                 newData.fate_embers.push(newFe);
 
                 const feOptions = commonDataObj.fate_ember_options.find(option => option.idfateember === fe);
-                
+
                 if (feOptions && feOptions.type === 'Golds') {
                     const montant = feOptions.value || 0;
                     const newGolds = (userDataObj.golds.currentGolds || 0) + montant;
@@ -110,22 +106,27 @@ export default function Fatember() {
                 // update the global state
                 setUserDataObj(newData);
 
-                // update firebase
-                const docRef = doc(db, 'users', currentUser.uid);
-                const res = await setDoc(docRef, newData);
-
                 const perso_data = userDataObj?.roster?.persos.find(p => p.name === perso);
                 const fe_data = commonDataObj?.fate_ember_options.find(e => e.idfateember === fe);
 
-                //console.log(perso_data, fe_data)
-
-                toast.success(`Fate Ember ${fe_data.name} ajouté pour ${perso_data.name}`, {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                });
+                // update firebase
+                const userDocRef = doc(db, 'users', currentUser.uid);
+                setDoc(userDocRef, newData)
+                    .then(() => {
+                        toast.success(`Fate Ember ${fe_data.name} ajouté pour ${perso_data.name}`, {
+                            position: 'top-right',
+                            duration: 3000,
+                            style: {
+                                borderRadius: '10px',
+                                background: '#333',
+                                color: '#fff',
+                            },
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Error adding fate ember: ', error);
+                        toast.error('Failed to add fate ember');
+                    });
 
                 setFateEmberSelectedPerso(null);
                 setFateEmberSelectedOption(null);
