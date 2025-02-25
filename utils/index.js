@@ -1419,6 +1419,22 @@ export const categories = [
         ]
     },
     {
+        "idcategorie": "c_guardian_raid_event",
+        "name": "Guardian Raid Event",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 3,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/tokenitem_71.webp",
+        "image": "",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
         "idcategorie": "c_kurzan_frontline",
         "name": "Kurzan Frontline",
         "reset": "daily",
