@@ -454,7 +454,7 @@ export default function Dashboard() {
                                                     <div key={indext} className={`grow grid grid-cols-6 ${indext > 0 ? 'border-t' : ''} border-[#2e3643] p-2`}>
                                                         <div className="text-gray-300 content-center">
                                                             <div>{task.idperso}</div>
-                                                            <div className='text-xs text-red-700'>{task?.gold ? '' : 'Uncheck golds'}</div>
+                                                            <div className='text-xs text-red-700'>{!task?.gold && p.goldEarner ? 'Uncheck golds' : ''}</div>
                                                         </div>
                                                         <div className="content-center">
                                                             <div className='flex flex-row justify-between mr-6'><span>{p.classe}</span><span>{p.ilevel}</span></div>
