@@ -105,7 +105,7 @@ export default function Dashboard() {
             tasks: updatedTasks
         };
 
-        if (!c.completAllAtOnce && c.groupe === 'raids' && difficulty) {
+        if (!c.completAllAtOnce && c.groupe === 'raids' && difficulty && perso.goldEarner) {
             let histoGold = null;
             let incomeGold = null;
             let newGolds = null;
