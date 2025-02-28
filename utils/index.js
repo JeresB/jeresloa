@@ -1316,7 +1316,7 @@ export const classes = [
     },
     {
         "name": "Wildsoul",
-        "logo": "images/class_aeromancer.png",
+        "logo": "images/class_wilsoul.png",
         "icon": "<i class=\"fa-solid fa-paw\" style=\"color: #8b4513;\"></i>",
         "type": "DPS"
     }
@@ -1428,6 +1428,7 @@ export const categories = [
         "rested": false,
         "completAllAtOnce": false,
         "logo": "images/tokenitem_71.webp",
+        "bloodstonesGain": 220,
         "image": "",
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
