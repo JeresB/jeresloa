@@ -1,7 +1,7 @@
 'use client'
 
 import { auth, db } from '@/firebase'
-import { getCategorieByName, getLastWednesday, getNextWednesday, getSecondLastWednesday, getWeekNumber, isThaemineWeek } from '@/utils'
+import { getCategorieByName, getLastWednesday, getNextWednesday, getSecondLastWednesday, getWeekNumber, isThaemineWeek, leveling_structure } from '@/utils'
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup, GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth'
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { format, getDay, subDays, getWeek } from 'date-fns'
@@ -16,6 +16,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
     const [userDataObj, setUserDataObj] = useState(null);
+    const [userLevelingObj, setUserLevelingObj] = useState(null);
     const [commonDataObj, setCommonDataObj] = useState(null);
     const [loading, setLoading] = useState(true);
     const [startDate, setStartDate] = useState(new Date(getLastWednesday()));
@@ -40,6 +41,7 @@ export function AuthProvider({ children }) {
 
     function logout() {
         setUserDataObj(null);
+        setUserLevelingObj(null);
         setCommonDataObj(null);
         setCurrentUser(null);
 
@@ -82,6 +84,23 @@ export function AuthProvider({ children }) {
                 }
 
                 setUserDataObj(firebaseUserData);
+
+
+                const levelingDocRef = doc(db, 'users', user.uid, 'leveling', 'data');
+                const levelingDocSnap = await getDoc(levelingDocRef);
+
+                let firebaseLevelingData = {}
+
+                if (levelingDocSnap.exists()) {
+                    firebaseLevelingData = levelingDocSnap.data();
+                } else {
+                    console.log('No Leveling Data Found');
+                    firebaseLevelingData = leveling_structure;
+                }
+
+                setUserLevelingObj(firebaseLevelingData);
+
+
 
                 const commonDocRef = doc(db, 'common', 'jeresloa');
                 const commonDocSnap = await getDoc(commonDocRef);
@@ -349,6 +368,8 @@ export function AuthProvider({ children }) {
         setUserDataObj,
         commonDataObj,
         setCommonDataObj,
+        userLevelingObj,
+        setUserLevelingObj,
         signup,
         logout,
         login,

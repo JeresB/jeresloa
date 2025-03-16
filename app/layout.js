@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Login from "@/components/Login";
 import Fatember from "@/components/Fatember";
 import GoldsDrawer from "@/components/GoldsDrawer";
+import Leveling from "@/components/Leveling";
 
 const ComfortaaSans = Comfortaa({ subsets: ["latin"] });
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }) {
                         <div className="flex flex-col h-full w-[230px] gap-2">
                             <Fatember />
                             <GoldsDrawer />
+                            <Leveling />
                         </div>
                         {children}
                     </div>

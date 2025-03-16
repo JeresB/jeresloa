@@ -197,7 +197,7 @@ export default function Fatember() {
                     <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
 
                     <ul className="flex flex-row flex-wrap gap-2">
-                        {commonDataObj.fate_ember_options.map((fe, index) => {
+                        {commonDataObj?.fate_ember_options?.map((fe, index) => {
                             return (
                                 <li className="h-full" style={{ flex: '1 1 150px' }} key={index} onChange={() => handleSelectionOptionClick(fe.idfateember)}>
                                     <input type="radio" id={"fateembertype-" + fe.idfateember} name="fateembertype" value={fe.idfateember} className="hidden peer js-fate-ember" required="" />
