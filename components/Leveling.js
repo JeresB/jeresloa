@@ -75,6 +75,16 @@ export default function Leveling() {
         }
     }, [userLevelingObj, currentUser]);
 
+    const getColorFromXP = (xp) => {
+        return xp < 4800 ? '#ffffff' :
+            xp < 9600 ? '#8df901' :
+            xp < 19200 ? '#00b0fa' :
+            xp < 28800 ? '#ba00f9' :
+            xp < 43200 ? '#f99200' :
+            xp < 57600 ? '#fa5d00' :
+            xp < 76800 ? '#ddc29d' : '#3cf2e6';
+    }
+
     if (!currentUser || loading) return null;
 
     return (
@@ -85,7 +95,7 @@ export default function Leveling() {
             <div className="flex flex-col items-center mb-2 p-2 border rounded-lg text-gray-300 bg-gray-800 border-gray-700">
                 <div className="flex flex-row justify-between w-full items-center">
                     <div>
-                        <h3 className="text-md font-bold">Rank: {
+                        <h3 className="text-md font-bold" style={{ color: getColorFromXP(userLevelingObj.user.experience_points)}}>Rank: {
                             userLevelingObj.user.experience_points < 4800 ? 'E' :
                             userLevelingObj.user.experience_points < 9600 ? 'D' :
                             userLevelingObj.user.experience_points < 19200 ? 'C' :
@@ -172,7 +182,7 @@ export default function Leveling() {
                         return (
                             <div key={index} onClick={handleClick} className="w-full items-center p-2 border rounded-lg cursor-pointer text-gray-300 bg-gray-800 hover:text-gray-200 hover:bg-gray-700 border-gray-700">
                                 <div className='flex flex-row justify-between'>
-                                    <h2>{category.name}</h2>
+                                    <h2 style={{ color: level.color}}>{category.name} ⋅ {level.rank}</h2>
                                     <h2>{firstIncompleteSubLevel ? '+' + firstIncompleteSubLevel?.required_reps : 'Done'}</h2>
                                 </div>
 
