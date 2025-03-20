@@ -2091,10 +2091,10 @@ export const leveling_structure = {
                     "color": "#00b0fa",
                     "xp_requis": 9600,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 30, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 30, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 30, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 30, "completed": false, "gain_xp": 20 }
+                        { "sub_level": 1, "required_reps": 20, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 20, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 20, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 20, "completed": false, "gain_xp": 20 }
                     ]
                 },
                 {
@@ -2103,10 +2103,10 @@ export const leveling_structure = {
                     "color": "#ba00f9",
                     "xp_requis": 19200,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 30, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 30, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 30, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 30, "completed": false, "gain_xp": 20 }
+                        { "sub_level": 1, "required_reps": 20, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 20, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 20, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 20, "completed": false, "gain_xp": 20 }
                     ]
                 },
                 {
@@ -2115,10 +2115,10 @@ export const leveling_structure = {
                     "color": "#f99200",
                     "xp_requis": 28800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 60, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 60, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 60, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 60, "completed": false, "gain_xp": 30 }
+                        { "sub_level": 1, "required_reps": 30, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 30, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 30, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 30, "completed": false, "gain_xp": 30 }
                     ]
                 },
                 {
@@ -2127,10 +2127,10 @@ export const leveling_structure = {
                     "color": "#fa5d00",
                     "xp_requis": 43200,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 60, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 60, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 60, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 60, "completed": false, "gain_xp": 30 }
+                        { "sub_level": 1, "required_reps": 30, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 30, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 30, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 30, "completed": false, "gain_xp": 30 }
                     ]
                 },
                 {
@@ -2139,10 +2139,10 @@ export const leveling_structure = {
                     "color": "#ddc29d",
                     "xp_requis": 57600,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 90, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 2, "required_reps": 90, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 3, "required_reps": 90, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 4, "required_reps": 90, "completed": false, "gain_xp": 40 }
+                        { "sub_level": 1, "required_reps": 45, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 2, "required_reps": 45, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 3, "required_reps": 45, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 4, "required_reps": 45, "completed": false, "gain_xp": 40 }
                     ]
                 },
                 {
@@ -2151,10 +2151,10 @@ export const leveling_structure = {
                     "color": "#3cf2e6",
                     "xp_requis": 76800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 120, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 2, "required_reps": 120, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 3, "required_reps": 120, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 4, "required_reps": 120, "completed": false, "gain_xp": 50 }
+                        { "sub_level": 1, "required_reps": 60, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 2, "required_reps": 60, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 3, "required_reps": 60, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 4, "required_reps": 60, "completed": false, "gain_xp": 50 }
                     ]
                 }
             ]
@@ -2269,10 +2269,10 @@ export const leveling_structure = {
                     "color": "#ffffff",
                     "xp_requis": 0,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 1000, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 2, "required_reps": 1000, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 3, "required_reps": 1000, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 4, "required_reps": 1000, "completed": false, "gain_xp": 10 }
+                        { "sub_level": 1, "required_reps": 300, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 2, "required_reps": 300, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 3, "required_reps": 300, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 4, "required_reps": 300, "completed": false, "gain_xp": 10 }
                     ]
                 },
                 {
@@ -2281,10 +2281,10 @@ export const leveling_structure = {
                     "color": "#8df901",
                     "xp_requis": 4800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 1000, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 2, "required_reps": 1000, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 3, "required_reps": 1000, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 4, "required_reps": 1000, "completed": false, "gain_xp": 10 }
+                        { "sub_level": 1, "required_reps": 300, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 2, "required_reps": 300, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 3, "required_reps": 300, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 4, "required_reps": 300, "completed": false, "gain_xp": 10 }
                     ]
                 },
                 {
@@ -2293,10 +2293,10 @@ export const leveling_structure = {
                     "color": "#00b0fa",
                     "xp_requis": 9600,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 1500, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 1500, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 1500, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 1500, "completed": false, "gain_xp": 20 }
+                        { "sub_level": 1, "required_reps": 500, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 500, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 500, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 500, "completed": false, "gain_xp": 20 }
                     ]
                 },
                 {
@@ -2305,10 +2305,10 @@ export const leveling_structure = {
                     "color": "#ba00f9",
                     "xp_requis": 19200,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 1500, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 1500, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 1500, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 1500, "completed": false, "gain_xp": 20 }
+                        { "sub_level": 1, "required_reps": 500, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 500, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 500, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 500, "completed": false, "gain_xp": 20 }
                     ]
                 },
                 {
@@ -2317,10 +2317,10 @@ export const leveling_structure = {
                     "color": "#f99200",
                     "xp_requis": 28800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 2000, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 2000, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 2000, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 2000, "completed": false, "gain_xp": 30 }
+                        { "sub_level": 1, "required_reps": 1000, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 1000, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 1000, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 1000, "completed": false, "gain_xp": 30 }
                     ]
                 },
                 {
@@ -2329,10 +2329,10 @@ export const leveling_structure = {
                     "color": "#fa5d00",
                     "xp_requis": 43200,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 2000, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 2000, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 2000, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 2000, "completed": false, "gain_xp": 30 }
+                        { "sub_level": 1, "required_reps": 1000, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 1000, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 1000, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 1000, "completed": false, "gain_xp": 30 }
                     ]
                 },
                 {
@@ -2341,10 +2341,10 @@ export const leveling_structure = {
                     "color": "#ddc29d",
                     "xp_requis": 57600,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 3000, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 2, "required_reps": 3000, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 3, "required_reps": 3000, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 4, "required_reps": 3000, "completed": false, "gain_xp": 40 }
+                        { "sub_level": 1, "required_reps": 1500, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 2, "required_reps": 1500, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 3, "required_reps": 1500, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 4, "required_reps": 1500, "completed": false, "gain_xp": 40 }
                     ]
                 },
                 {
@@ -2353,10 +2353,10 @@ export const leveling_structure = {
                     "color": "#3cf2e6",
                     "xp_requis": 76800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 4000, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 2, "required_reps": 4000, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 3, "required_reps": 4000, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 4, "required_reps": 4000, "completed": false, "gain_xp": 50 }
+                        { "sub_level": 1, "required_reps": 2000, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 2, "required_reps": 2000, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 3, "required_reps": 2000, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 4, "required_reps": 2000, "completed": false, "gain_xp": 50 }
                     ]
                 }
             ]

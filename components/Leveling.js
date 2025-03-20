@@ -53,7 +53,7 @@ export default function Leveling() {
     }, [userLevelingObj, currentUser]);
 
     useEffect(() => {
-        //console.log(userLevelingObj);
+        console.log(userLevelingObj);
 
         if (userLevelingObj && currentUser) {
             const levelingDocRef = doc(db, 'users', currentUser.uid, 'leveling', 'data');
@@ -105,7 +105,7 @@ export default function Leveling() {
                             userLevelingObj.user.experience_points < 76800 ? 'SS' : 'SSS'
                         }</h3>
                         <h3 className="text-md font-bold">Level: {Math.floor((userLevelingObj.user.experience_points * 100) / 76800)}</h3>
-                        <h3 className="text-md font-bold">XP: {userLevelingObj.user.experience_points}</h3>
+                        <h3 className="text-md font-bold">XP: {userLevelingObj.user.experience_points}/{((Math.ceil((userLevelingObj.user.experience_points * 100) / 76800) * 76800) / 100)}</h3>
                     </div>
                     <div>
                         <i className="fas fa-dumbbell text-3xl"></i>
@@ -169,11 +169,20 @@ export default function Leveling() {
                                 return cat;
                             });
 
+                            const updatedStats = { ...userLevelingObj.user.stats || {} };
+
+                            if (updatedStats[category.name]) {
+                                updatedStats[category.name].done += firstIncompleteSubLevel.required_reps;
+                            } else {
+                                updatedStats[category.name] = { done: firstIncompleteSubLevel.required_reps, name: category.name };
+                            }
+
                             setUserLevelingObj(prevState => ({
                                 ...prevState,
                                 categories: updatedCategories,
                                 user: {
                                     ...prevState.user,
+                                    stats: updatedStats,
                                     experience_points: prevState.user.experience_points + gainedXP
                                 }
                             }));
@@ -199,6 +208,22 @@ export default function Leveling() {
 
                     return null;
                 })}
+            </div>
+
+            <div className="flex flex-col items-center mb-2 p-2 border rounded-lg text-gray-300 bg-gray-800 border-gray-700 mt-2">
+                <div className="flex flex-row justify-between w-full items-center">
+                    <h2 className="text-md font-bold">Statistics</h2>
+                    <i className="fas fa-chart-bar text-3xl"></i>
+                </div>
+                <div className="w-full mt-2">
+                    <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" />
+                    {Object.entries(userLevelingObj.user.stats || {}).map(([key, value], index) => (
+                        <div key={index} className="flex flex-row justify-between w-full items-center">
+                            <span>{value.name}</span>
+                            <span>{value.done}</span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )
