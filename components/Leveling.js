@@ -197,9 +197,9 @@ export default function Leveling() {
 
                         return (
                             <div key={index} onClick={handleClick} className="w-full items-center p-2 border rounded-lg cursor-pointer text-gray-300 bg-gray-800 hover:text-gray-200 hover:bg-gray-700 border-gray-700">
-                                <div className='flex flex-col justify-between mb-1'>
+                                <div className='flex flex-row justify-between mb-1 gap-6'>
                                     <h2 style={{ color: level.color}}>{level.type} ⋅ {level.rank}</h2>
-                                    <h2 className='text-right' style={{ color: level.color}}>{firstIncompleteSubLevel ? '+' + firstIncompleteSubLevel?.required_reps : 'Done'}</h2>
+                                    <h2 className='' style={{ color: level.color}}>{firstIncompleteSubLevel ? '+' + firstIncompleteSubLevel?.required_reps : 'Done'}</h2>
                                 </div>
 
                                 <div className='flex flex-row flex-nowrap gap-2'>
