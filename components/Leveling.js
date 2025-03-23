@@ -49,6 +49,13 @@ export default function Leveling() {
                     }
                 }));
             }
+
+            // if (JSON.stringify(userLevelingObj.categories) !== JSON.stringify(leveling_structure.categories)) {
+            //     setUserLevelingObj(prevState => ({
+            //         ...prevState,
+            //         categories: leveling_structure.categories
+            //     }));
+            // }
         }
     }, [userLevelingObj, currentUser]);
 
@@ -190,9 +197,9 @@ export default function Leveling() {
 
                         return (
                             <div key={index} onClick={handleClick} className="w-full items-center p-2 border rounded-lg cursor-pointer text-gray-300 bg-gray-800 hover:text-gray-200 hover:bg-gray-700 border-gray-700">
-                                <div className='flex flex-row justify-between'>
-                                    <h2 style={{ color: level.color}}>{category.name} ⋅ {level.rank}</h2>
-                                    <h2>{firstIncompleteSubLevel ? '+' + firstIncompleteSubLevel?.required_reps : 'Done'}</h2>
+                                <div className='flex flex-col justify-between mb-1'>
+                                    <h2 style={{ color: level.color}}>{level.type} ⋅ {level.rank}</h2>
+                                    <h2 className='text-right' style={{ color: level.color}}>{firstIncompleteSubLevel ? '+' + firstIncompleteSubLevel?.required_reps : 'Done'}</h2>
                                 </div>
 
                                 <div className='flex flex-row flex-nowrap gap-2'>

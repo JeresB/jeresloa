@@ -416,7 +416,32 @@ export default function Dashboard() {
                     )
                 })}
             </div>
+
             <div className='h-4'></div>
+            <div className={`w-full grid text-gray-300 p-2 border border-[#2e3643] sticky top-0 bg-[#1e232d] box-shadow-loa z-10 whitespace-nowrap`} style={{ gridTemplateColumns: `repeat(${2 + persos?.filter(p => p.name !== 'Roster' && tasks?.some(task => task.idperso === p.name && getCategorieByName(task.idcategorie).groupe === 'raids')).length}, minmax(0, 1fr))` }}>
+                <div>Raid left todo</div>
+                <div>{tasks?.filter(task => getCategorieByName(task.idcategorie).groupe === 'raids' && task.actif && task.done < getCategorieByName(task.idcategorie).repet).length}</div>
+                {persos?.filter(perso => perso.name !== 'Roster' && tasks?.some(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'raids')).map((perso, index) => (
+                    <div key={index}>{perso.name}</div>
+                ))}
+            </div>
+            {categories?.filter(categorie => categorie.groupe === 'raids').map((raid, indexr) => (
+                <div key={indexr} className={`grid text-gray-400 px-2 py-4 border-l border-r border-b border-[#2e3643] whitespace-nowrap`} style={{ gridTemplateColumns: `repeat(${2 + persos?.filter(p => p.name !== 'Roster' && tasks?.some(task => task.idperso === p.name && getCategorieByName(task.idcategorie).groupe === 'raids')).length}, minmax(0, 1fr))` }}>
+                    <div>{raid.name}</div>
+                    <div>{tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length}</div>
+                    {persos?.filter(perso => perso.name !== 'Roster' && tasks?.some(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'raids')).map((perso, index) => {
+                        const task = tasks?.find(task => task.idcategorie === raid.name && task.idperso === perso.name);
+                        return (
+                            <div key={index} className={task && task.done >= raid.repet ? 'text-gray-600' : ''}>
+                                {task ? `${task.done}/${raid.repet}` : 'N/A'}
+                            </div>
+                        );
+                    })}
+                </div>
+            ))}
+
+            <div className='h-4'></div>
+
             <div className='grid grid-cols-1'>
                 {
                     categories?.filter(categorie => categorie.groupe === 'raids').map((raid, indexr) => {
