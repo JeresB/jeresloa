@@ -1963,225 +1963,7 @@ export const leveling_structure = {
                 {
                     "name": "Normal",
                     "rank": "E",
-                    "type": "Pompes classiques",
-                    "color": "#ffffff",
-                    "xp_requis": 0,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 2, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 3, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 4, "required_reps": 5, "completed": false, "gain_xp": 10 }
-                    ]
-                },
-                {
-                    "name": "Uncommon",
-                    "rank": "D",
-                    "type": "Pompes diamant",
-                    "color": "#8df901",
-                    "xp_requis": 4800,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 2, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 3, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 4, "required_reps": 5, "completed": false, "gain_xp": 10 }
-                    ]
-                },
-                {
-                    "name": "Rare",
-                    "rank": "C",
-                    "type": "Pompes inclinées",
-                    "color": "#00b0fa",
-                    "xp_requis": 9600,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 7, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 7, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 7, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 7, "completed": false, "gain_xp": 20 }
-                    ]
-                },
-                {
-                    "name": "Epic",
-                    "rank": "B",
-                    "type": "Pompes sur une main",
-                    "color": "#ba00f9",
-                    "xp_requis": 19200,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 3, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 3, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 3, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 3, "completed": false, "gain_xp": 20 }
-                    ]
-                },
-                {
-                    "name": "Legendary",
-                    "rank": "A",
-                    "type": "Pompes explosives",
-                    "color": "#f99200",
-                    "xp_requis": 28800,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 30 }
-                    ]
-                },
-                {
-                    "name": "Relic",
-                    "rank": "S",
-                    "type": "Pompes décalées",
-                    "color": "#fa5d00",
-                    "xp_requis": 43200,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 6, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 6, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 6, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 6, "completed": false, "gain_xp": 30 }
-                    ]
-                },
-                {
-                    "name": "Ancient",
-                    "rank": "SS",
-                    "type": "Pompes archers",
-                    "color": "#ddc29d",
-                    "xp_requis": 57600,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 40 }
-                    ]
-                },
-                {
-                    "name": "Sidereal",
-                    "rank": "SSS",
-                    "type": "Pompes superman",
-                    "color": "#3cf2e6",
-                    "xp_requis": 76800,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 3, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 2, "required_reps": 3, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 3, "required_reps": 3, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 4, "required_reps": 3, "completed": false, "gain_xp": 50 }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Planche",
-            "levels": [
-                {
-                    "name": "Normal",
-                    "rank": "E",
-                    "type": "Planche classique",
-                    "color": "#ffffff",
-                    "xp_requis": 0,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 8, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 2, "required_reps": 8, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 3, "required_reps": 8, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 4, "required_reps": 8, "completed": false, "gain_xp": 10 }
-                    ]
-                },
-                {
-                    "name": "Uncommon",
-                    "rank": "D",
-                    "type": "Planche avec une jambe levée",
-                    "color": "#8df901",
-                    "xp_requis": 4800,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 12, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 2, "required_reps": 12, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 3, "required_reps": 12, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 4, "required_reps": 12, "completed": false, "gain_xp": 10 }
-                    ]
-                },
-                {
-                    "name": "Rare",
-                    "rank": "C",
-                    "type": "Planche latérale",
-                    "color": "#00b0fa",
-                    "xp_requis": 9600,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 15, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 15, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 15, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 15, "completed": false, "gain_xp": 20 }
-                    ]
-                },
-                {
-                    "name": "Epic",
-                    "rank": "B",
-                    "type": "Planche avec bras tendus",
-                    "color": "#ba00f9",
-                    "xp_requis": 19200,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 18, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 18, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 18, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 18, "completed": false, "gain_xp": 20 }
-                    ]
-                },
-                {
-                    "name": "Legendary",
-                    "rank": "A",
-                    "type": "Planche dynamique",
-                    "color": "#f99200",
-                    "xp_requis": 28800,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 20, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 20, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 20, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 20, "completed": false, "gain_xp": 30 }
-                    ]
-                },
-                {
-                    "name": "Relic",
-                    "rank": "S",
-                    "type": "Planche avec poids",
-                    "color": "#fa5d00",
-                    "xp_requis": 43200,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 22, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 22, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 22, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 22, "completed": false, "gain_xp": 30 }
-                    ]
-                },
-                {
-                    "name": "Ancient",
-                    "rank": "SS",
-                    "type": "Planche avec mouvement latéral",
-                    "color": "#ddc29d",
-                    "xp_requis": 57600,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 22, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 2, "required_reps": 22, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 3, "required_reps": 22, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 4, "required_reps": 22, "completed": false, "gain_xp": 40 }
-                    ]
-                },
-                {
-                    "name": "Sidereal",
-                    "rank": "SSS",
-                    "type": "Planche avec rotation complète",
-                    "color": "#3cf2e6",
-                    "xp_requis": 76800,
-                    "sub_levels": [
-                        { "sub_level": 1, "required_reps": 23, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 2, "required_reps": 23, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 3, "required_reps": 23, "completed": false, "gain_xp": 50 },
-                        { "sub_level": 4, "required_reps": 23, "completed": false, "gain_xp": 50 }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Squats",
-            "levels": [
-                {
-                    "name": "Normal",
-                    "rank": "E",
-                    "type": "Squats classiques",
+                    "type": "Pompes",
                     "color": "#ffffff",
                     "xp_requis": 0,
                     "sub_levels": [
@@ -2194,72 +1976,181 @@ export const leveling_structure = {
                 {
                     "name": "Uncommon",
                     "rank": "D",
-                    "type": "Squats sautés",
+                    "type": "Pompes",
                     "color": "#8df901",
                     "xp_requis": 4800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 2, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 3, "required_reps": 5, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 4, "required_reps": 5, "completed": false, "gain_xp": 10 }
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 10 }
                     ]
                 },
                 {
                     "name": "Rare",
                     "rank": "C",
-                    "type": "Fentes statiques",
+                    "type": "Pompes diamants",
                     "color": "#00b0fa",
                     "xp_requis": 9600,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 6, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 6, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 6, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 6, "completed": false, "gain_xp": 20 }
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 20 }
                     ]
                 },
                 {
                     "name": "Epic",
                     "rank": "B",
-                    "type": "Fentes sautées",
+                    "type": "Pompes diamants",
                     "color": "#ba00f9",
                     "xp_requis": 19200,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 7, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 7, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 7, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 7, "completed": false, "gain_xp": 20 }
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 20 }
                     ]
                 },
                 {
                     "name": "Legendary",
                     "rank": "A",
-                    "type": "Squats sumo",
+                    "type": "Pompes excentriques",
                     "color": "#f99200",
                     "xp_requis": 28800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 8, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 8, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 8, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 8, "completed": false, "gain_xp": 30 }
+                        { "sub_level": 1, "required_reps": 3, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 3, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 3, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 3, "completed": false, "gain_xp": 30 }
                     ]
                 },
                 {
                     "name": "Relic",
                     "rank": "S",
-                    "type": "Squats pistols assistés",
+                    "type": "Pompes excentriques",
                     "color": "#fa5d00",
                     "xp_requis": 43200,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 9, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 9, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 9, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 9, "completed": false, "gain_xp": 30 }
+                        { "sub_level": 1, "required_reps": 3, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 3, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 3, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 3, "completed": false, "gain_xp": 30 }
                     ]
                 },
                 {
                     "name": "Ancient",
                     "rank": "SS",
-                    "type": "Squats isométriques",
+                    "type": "Pompes coudes serrées",
+                    "color": "#ddc29d",
+                    "xp_requis": 57600,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 40 }
+                    ]
+                },
+                {
+                    "name": "Sidereal",
+                    "rank": "SSS",
+                    "type": "Pompes pieds surélevés",
+                    "color": "#3cf2e6",
+                    "xp_requis": 76800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 50 }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Planche",
+            "levels": [
+                {
+                    "name": "Normal",
+                    "rank": "E",
+                    "type": "Planche",
+                    "color": "#ffffff",
+                    "xp_requis": 0,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 8, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 2, "required_reps": 8, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 3, "required_reps": 8, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 4, "required_reps": 8, "completed": false, "gain_xp": 10 }
+                    ]
+                },
+                {
+                    "name": "Uncommon",
+                    "rank": "D",
+                    "type": "Planche",
+                    "color": "#8df901",
+                    "xp_requis": 4800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 8, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 2, "required_reps": 8, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 3, "required_reps": 8, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 4, "required_reps": 8, "completed": false, "gain_xp": 10 }
+                    ]
+                },
+                {
+                    "name": "Rare",
+                    "rank": "C",
+                    "type": "Planche latérale",
+                    "color": "#00b0fa",
+                    "xp_requis": 9600,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 8, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 8, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 8, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 8, "completed": false, "gain_xp": 20 }
+                    ]
+                },
+                {
+                    "name": "Epic",
+                    "rank": "B",
+                    "type": "Planche latérale",
+                    "color": "#ba00f9",
+                    "xp_requis": 19200,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 8, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 8, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 8, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 8, "completed": false, "gain_xp": 20 }
+                    ]
+                },
+                {
+                    "name": "Legendary",
+                    "rank": "A",
+                    "type": "Planche superman",
+                    "color": "#f99200",
+                    "xp_requis": 28800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 30 }
+                    ]
+                },
+                {
+                    "name": "Relic",
+                    "rank": "S",
+                    "type": "Planche superman",
+                    "color": "#fa5d00",
+                    "xp_requis": 43200,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 30 }
+                    ]
+                },
+                {
+                    "name": "Ancient",
+                    "rank": "SS",
+                    "type": "Planche araignée",
                     "color": "#ddc29d",
                     "xp_requis": 57600,
                     "sub_levels": [
@@ -2272,7 +2163,7 @@ export const leveling_structure = {
                 {
                     "name": "Sidereal",
                     "rank": "SSS",
-                    "type": "Squats sautés explosifs",
+                    "type": "Planche araignée",
                     "color": "#3cf2e6",
                     "xp_requis": 76800,
                     "sub_levels": [
@@ -2280,6 +2171,115 @@ export const leveling_structure = {
                         { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 50 },
                         { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 50 },
                         { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 50 }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Squats",
+            "levels": [
+                {
+                    "name": "Normal",
+                    "rank": "E",
+                    "type": "Squats",
+                    "color": "#ffffff",
+                    "xp_requis": 0,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 10 }
+                    ]
+                },
+                {
+                    "name": "Uncommon",
+                    "rank": "D",
+                    "type": "Squats Bulgare",
+                    "color": "#8df901",
+                    "xp_requis": 4800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 10 }
+                    ]
+                },
+                {
+                    "name": "Rare",
+                    "rank": "C",
+                    "type": "Squats Sumo",
+                    "color": "#00b0fa",
+                    "xp_requis": 9600,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 20 }
+                    ]
+                },
+                {
+                    "name": "Epic",
+                    "rank": "B",
+                    "type": "Squats",
+                    "color": "#ba00f9",
+                    "xp_requis": 19200,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 20 }
+                    ]
+                },
+                {
+                    "name": "Legendary",
+                    "rank": "A",
+                    "type": "Squats Bulgare",
+                    "color": "#f99200",
+                    "xp_requis": 28800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 30 }
+                    ]
+                },
+                {
+                    "name": "Relic",
+                    "rank": "S",
+                    "type": "Squats Sumo",
+                    "color": "#fa5d00",
+                    "xp_requis": 43200,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 4, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 4, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 4, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 4, "completed": false, "gain_xp": 30 }
+                    ]
+                },
+                {
+                    "name": "Ancient",
+                    "rank": "SS",
+                    "type": "Squats",
+                    "color": "#ddc29d",
+                    "xp_requis": 57600,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 5, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 2, "required_reps": 5, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 3, "required_reps": 5, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 4, "required_reps": 5, "completed": false, "gain_xp": 40 }
+                    ]
+                },
+                {
+                    "name": "Sidereal",
+                    "rank": "SSS",
+                    "type": "Squats sautés",
+                    "color": "#3cf2e6",
+                    "xp_requis": 76800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 5, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 2, "required_reps": 5, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 3, "required_reps": 5, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 4, "required_reps": 5, "completed": false, "gain_xp": 50 }
                     ]
                 }
             ]
@@ -2399,7 +2399,7 @@ export const leveling_structure = {
                 {
                     "name": "Normal",
                     "rank": "E",
-                    "type": "La montée en demi-pointe",
+                    "type": "Montée demi-pointe",
                     "color": "#ffffff",
                     "xp_requis": 0,
                     "sub_levels": [
@@ -2412,59 +2412,59 @@ export const leveling_structure = {
                 {
                     "name": "Uncommon",
                     "rank": "D",
-                    "type": "Le pédalo",
+                    "type": "Flexions des chevilles",
                     "color": "#8df901",
                     "xp_requis": 4800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 15, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 2, "required_reps": 15, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 3, "required_reps": 15, "completed": false, "gain_xp": 10 },
-                        { "sub_level": 4, "required_reps": 15, "completed": false, "gain_xp": 10 }
+                        { "sub_level": 1, "required_reps": 10, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 10 },
+                        { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 10 }
                     ]
                 },
                 {
                     "name": "Rare",
                     "rank": "C",
-                    "type": "Les ciseaux",
+                    "type": "Montée demi-pointe",
                     "color": "#00b0fa",
                     "xp_requis": 9600,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 15, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 15, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 15, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 15, "completed": false, "gain_xp": 20 }
+                        { "sub_level": 1, "required_reps": 10, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 20 }
                     ]
                 },
                 {
                     "name": "Epic",
                     "rank": "B",
-                    "type": "La balle de tennis",
+                    "type": "Flexions des chevilles",
                     "color": "#ba00f9",
                     "xp_requis": 19200,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 20, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 2, "required_reps": 20, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 3, "required_reps": 20, "completed": false, "gain_xp": 20 },
-                        { "sub_level": 4, "required_reps": 20, "completed": false, "gain_xp": 20 }
+                        { "sub_level": 1, "required_reps": 10, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 20 }
                     ]
                 },
                 {
                     "name": "Legendary",
                     "rank": "A",
-                    "type": "Flexions des chevilles",
+                    "type": "Montée demi-pointe",
                     "color": "#f99200",
                     "xp_requis": 28800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 20, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 2, "required_reps": 20, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 3, "required_reps": 20, "completed": false, "gain_xp": 30 },
-                        { "sub_level": 4, "required_reps": 20, "completed": false, "gain_xp": 30 }
+                        { "sub_level": 1, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 30 }
                     ]
                 },
                 {
                     "name": "Relic",
                     "rank": "S",
-                    "type": "Cercles des jambes",
+                    "type": "Flexions des chevilles",
                     "color": "#fa5d00",
                     "xp_requis": 43200,
                     "sub_levels": [
@@ -2477,27 +2477,27 @@ export const leveling_structure = {
                 {
                     "name": "Ancient",
                     "rank": "SS",
-                    "type": "Élévation des jambes",
+                    "type": "Montée demi-pointe",
                     "color": "#ddc29d",
                     "xp_requis": 57600,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 12, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 2, "required_reps": 12, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 3, "required_reps": 12, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 4, "required_reps": 12, "completed": false, "gain_xp": 40 }
+                        { "sub_level": 1, "required_reps": 10, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 40 }
                     ]
                 },
                 {
                     "name": "Sidereal",
                     "rank": "SSS",
-                    "type": "Contraction isométrique des mollets",
+                    "type": "Flexions des chevilles",
                     "color": "#3cf2e6",
                     "xp_requis": 76800,
                     "sub_levels": [
-                        { "sub_level": 1, "required_reps": 12, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 2, "required_reps": 12, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 3, "required_reps": 12, "completed": false, "gain_xp": 40 },
-                        { "sub_level": 4, "required_reps": 12, "completed": false, "gain_xp": 40 }
+                        { "sub_level": 1, "required_reps": 10, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 40 }
                     ]
                 }
             ]
