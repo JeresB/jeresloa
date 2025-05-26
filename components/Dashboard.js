@@ -450,9 +450,7 @@ export default function Dashboard() {
                         if (tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length > 0) {
                             return (
                                 <div key={indexr} className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
-                                    {displayRaidPicture && (
-                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
-                                    )}
+                                    <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
                                     <div className="col-span-2 flex flex-col">
                                         {
                                             tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).map((task, indext) => {
@@ -504,9 +502,6 @@ export default function Dashboard() {
                                             })
                                         }
                                     </div>
-                                    {!displayRaidPicture && (
-                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
-                                    )}
                                 </div>
                             )
                         } 
