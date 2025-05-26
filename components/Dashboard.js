@@ -306,14 +306,14 @@ export default function Dashboard() {
         const daysLeft = daysRestants();
 
         const dailyBloodstones = tasks
-            ?.filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'daily')
+            ?.filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie)?.groupe === 'daily')
             ?.reduce((total, task) => {
                 const category = getCategorieByName(task.idcategorie);
                 return total + ((category.bloodstonesGain || 0) * (category.repet - task.done));
             }, 0);
 
         const weeklyBloodstones = tasks
-            ?.filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'weekly')
+            ?.filter(task => task.idperso === perso.name && getCategorieByName(task.idcategorie)?.groupe === 'weekly')
             ?.reduce((total, task) => {
                 const category = getCategorieByName(task.idcategorie);
                 return total + ((category.bloodstonesGain || 0) * (category.repet - task.done));
@@ -366,7 +366,7 @@ export default function Dashboard() {
                     const filteredTasks = tasks?.filter(task =>
                         (task.idperso === perso.name || (task.idperso === "" && perso.name === "Roster"))
                         && task.actif
-                        && (task.done < getCategorieByName(task.idcategorie).repet && (task.rest == undefined || task.done == 0 && task.rest >= task.restNeeded || task.done > 0))
+                        && (task.done < getCategorieByName(task.idcategorie)?.repet && (task.rest == undefined || task.done == 0 && task.rest >= task.restNeeded || task.done > 0))
                         && ((getCategorieByName(task.idcategorie).horaire !== undefined && getCategorieByName(task.idcategorie).horaire.includes(currentHour < userDataObj.reset.resetHour ? previousDay : currentDay)) || getCategorieByName(task.idcategorie).horaire === undefined)
                     );
 
@@ -420,7 +420,7 @@ export default function Dashboard() {
             <div className='h-4'></div>
             <div className={`w-full grid text-gray-300 p-2 border border-[#2e3643] sticky top-0 bg-[#1e232d] box-shadow-loa z-10 whitespace-nowrap`} style={{ gridTemplateColumns: `repeat(${2 + persos?.filter(p => p.name !== 'Roster' && tasks?.some(task => task.idperso === p.name && getCategorieByName(task.idcategorie).groupe === 'raids')).length}, minmax(0, 1fr))` }}>
                 <div>Raid left todo</div>
-                <div>{tasks?.filter(task => getCategorieByName(task.idcategorie).groupe === 'raids' && task.actif && task.done < getCategorieByName(task.idcategorie).repet).length}</div>
+                <div>{tasks?.filter(task => getCategorieByName(task.idcategorie)?.groupe === 'raids' && task.actif && task.done < getCategorieByName(task.idcategorie).repet).length}</div>
                 {persos?.filter(perso => perso.name !== 'Roster' && tasks?.some(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'raids')).map((perso, index) => (
                     <div key={index}>{perso.name}</div>
                 ))}
