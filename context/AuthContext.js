@@ -321,23 +321,23 @@ export function AuthProvider({ children }) {
             if (userDataObj?.roster?.persos) {
                 userDataObj.roster.persos.forEach(perso => {
                     if (checkGoldRaid) {
-                        updatedUserDataObj.tasks.forEach(task => {
-                            if (task.idcategorie === 'Echidna' && task.idperso === perso.name) {
-                                const thaemineTask = updatedUserDataObj.tasks.find(t => t.idcategorie === 'Thaemine' && t.idperso === perso.name);
-                                if (thaemineTask && thaemineTask.done >= getCategorieByName(thaemineTask.idcategorie).repet) {
-                                    task.gold = true;
-                                } else {
-                                    task.gold = false;
-                                }
-                            }
-                            if (task.idcategorie === 'Thaemine' && task.idperso === perso.name) {
-                                if (task.done < getCategorieByName(task.idcategorie).repet) {
-                                    task.gold = true;
-                                } else {
-                                    task.gold = false;
-                                }
-                            }
-                        });
+                        // updatedUserDataObj.tasks.forEach(task => {
+                        //     if (task.idcategorie === 'Echidna' && task.idperso === perso.name) {
+                        //         const thaemineTask = updatedUserDataObj.tasks.find(t => t.idcategorie === 'Thaemine' && t.idperso === perso.name);
+                        //         if (thaemineTask && thaemineTask.done >= getCategorieByName(thaemineTask.idcategorie).repet) {
+                        //             task.gold = true;
+                        //         } else {
+                        //             task.gold = false;
+                        //         }
+                        //     }
+                        //     if (task.idcategorie === 'Thaemine' && task.idperso === perso.name) {
+                        //         if (task.done < getCategorieByName(task.idcategorie).repet) {
+                        //             task.gold = true;
+                        //         } else {
+                        //             task.gold = false;
+                        //         }
+                        //     }
+                        // });
 
                         // Reset raidgatedone if perso is a gold earner
                         if (perso.goldEarner) {

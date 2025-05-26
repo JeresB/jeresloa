@@ -1552,6 +1552,70 @@ export const categories = [
         ]
     },
     {
+        "idcategorie": "c_drextalas",
+        "name": "Drextalas",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 4,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/guardian.png",
+        "image": "",
+        "maxRest": 100,
+        "bloodstonesGain": 220,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
+        "idcategorie": "c_mordum",
+        "name": "Mordum Act. 3",
+        "gold": true,
+        "NM": {
+            "ilevel": 1680,
+            "gain": 28000,
+            "G1": 6000,
+            "G2": 9500,
+            "G3": 12500,
+            "coffreG1": -2400,
+            "coffreG2": -3200,
+            "coffreG3": -4200
+        },
+        "HM": {
+            "ilevel": 1700,
+            "gain": 38000,
+            "G1": 7000,
+            "G2": 11000,
+            "G3": 20000,
+            "coffreG1": -2700,
+            "coffreG2": -4100,
+            "coffreG3": -5800
+        },
+        "reset": "weekly",
+        "groupe": "raids",
+        "repet": 3,
+        "duration": 60,
+        "rested": false,
+        "completAllAtOnce": false,
+        "trackGold": true,
+        "logo": "images/mordum.webp",
+        "image": "images/LA_Roadmap_June_KeyArt_1920x1080_CT.jpg",
+        "bloodstonesGain": 330,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG3_input", "var": "coffreG3", "name": "Coffre G3" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
+            { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
+        ]
+    },
+    {
         "idcategorie": "c_brelv2_1_2",
         "name": "Brelshaza Act. 2",
         "gold": true,
@@ -1592,7 +1656,7 @@ export const categories = [
     },
     {
         "idcategorie": "c_aegir_1_2",
-        "name": "Aegir",
+        "name": "Aegir Act. 1",
         "gold": true,
         "NM": {
             "ilevel": 1660,
@@ -1625,53 +1689,6 @@ export const categories = [
             { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
             { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
             { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
-            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
-            { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
-        ]
-    },
-    {
-        "idcategorie": "c_theamine_1_4",
-        "name": "Thaemine",
-        "gold": true,
-        "NM": {
-            "ilevel": 1610,
-            "gain": 13000,
-            "G1": 3500,
-            "G2": 4000,
-            "G3": 5500,
-            "coffreG1": -1500,
-            "coffreG2": -1800,
-            "coffreG3": -2500
-        },
-        "HM": {
-            "ilevel": 1620,
-            "gain": 28600,
-            "G1": 4400,
-            "G2": 5500,
-            "G3": 8900,
-            "G4": 9800,
-            "coffreG1": -1700,
-            "coffreG2": -1900,
-            "coffreG3": -2300,
-            "coffreG4": -2300
-        },
-        "reset": "bimensuelthaemine",
-        "groupe": "raids",
-        "repet": 4,
-        "duration": 60,
-        "rested": false,
-        "completAllAtOnce": false,
-        "trackGold": true,
-        "logo": "images/ToxicBaby.png",
-        "image": "images/raidsv2thaemine.jpg",
-        "bloodstonesGain": 330,
-        "inputs": [
-            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
-            { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG3_input", "var": "coffreG3", "name": "Coffre G3" },
-            { "type": "checkbox", "id": "tasksconfig_coffreG4_input", "var": "coffreG4", "name": "Coffre G4" },
             { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
             { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
         ]
@@ -1746,7 +1763,53 @@ export const categories = [
             { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
         ]
     },
-
+    {
+        "idcategorie": "c_theamine_1_4",
+        "name": "Thaemine",
+        "gold": true,
+        "NM": {
+            "ilevel": 1610,
+            "gain": 13000,
+            "G1": 3500,
+            "G2": 4000,
+            "G3": 5500,
+            "coffreG1": -1500,
+            "coffreG2": -1800,
+            "coffreG3": -2500
+        },
+        "HM": {
+            "ilevel": 1620,
+            "gain": 28600,
+            "G1": 4400,
+            "G2": 5500,
+            "G3": 8900,
+            "G4": 9800,
+            "coffreG1": -1700,
+            "coffreG2": -1900,
+            "coffreG3": -2300,
+            "coffreG4": -2300
+        },
+        "reset": "bimensuelthaemine",
+        "groupe": "raids",
+        "repet": 4,
+        "duration": 60,
+        "rested": false,
+        "completAllAtOnce": false,
+        "trackGold": true,
+        "logo": "images/ToxicBaby.png",
+        "image": "images/raidsv2thaemine.jpg",
+        "bloodstonesGain": 330,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "checkbox", "id": "tasksconfig_gold_input", "var": "gold", "name": "Gold" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG1_input", "var": "coffreG1", "name": "Coffre G1" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG2_input", "var": "coffreG2", "name": "Coffre G2" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG3_input", "var": "coffreG3", "name": "Coffre G3" },
+            { "type": "checkbox", "id": "tasksconfig_coffreG4_input", "var": "coffreG4", "name": "Coffre G4" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" },
+            { "type": "number", "id": "tasksconfig_done_input", "var": "done", "name": "Done" }
+        ]
+    },
     {
         "idcategorie": "c_ebony_cube",
         "name": "Ebony Cube",

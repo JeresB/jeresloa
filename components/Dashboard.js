@@ -430,10 +430,10 @@ export default function Dashboard() {
                     <div>{raid.name}</div>
                     <div>{tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length}</div>
                     {persos?.filter(perso => perso.name !== 'Roster' && tasks?.some(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'raids')).map((perso, index) => {
-                        const task = tasks?.find(task => task.idcategorie === raid.name && task.idperso === perso.name);
+                        const task = tasks?.find(task => task.idcategorie === raid.name && task.actif && task.idperso === perso.name);
                         return (
                             <div key={index} className={task && task.done >= raid.repet ? 'text-gray-600' : ''}>
-                                {task ? `${task.done}/${raid.repet}` : 'N/A'}
+                                {task ? `${task.done}/${raid.repet}` : ''}
                             </div>
                         );
                     })}
@@ -509,35 +509,36 @@ export default function Dashboard() {
                                     )}
                                 </div>
                             )
-                        } else {
-                            const clear = Math.floor(tasks
-                                ?.filter(task => task.idcategorie === raid.name)
-                                ?.reduce((sum, task) => sum + (task.count / raid.repet), 0)
-                            )
+                        } 
+                        // else {
+                        //     const clear = Math.floor(tasks
+                        //         ?.filter(task => task.idcategorie === raid.name)
+                        //         ?.reduce((sum, task) => sum + (task.count / raid.repet), 0)
+                        //     )
 
-                            const totalIncome = userDataObj.golds.incomes
-                                ?.filter(income => income.description?.includes(raid.name))
-                                ?.reduce((sum, income) => sum + income.montant, 0);
+                        //     const totalIncome = userDataObj.golds.incomes
+                        //         ?.filter(income => income.description?.includes(raid.name))
+                        //         ?.reduce((sum, income) => sum + income.montant, 0);
 
-                            return (
-                                <div key={indexr} className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
-                                    {displayRaidPicture && (
-                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
-                                    )}
+                        //     return (
+                        //         <div key={indexr} className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
+                        //             {displayRaidPicture && (
+                        //                 <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
+                        //             )}
 
-                                    <div className="col-span-2">
-                                        <div className="flex justify-around items-center h-full">
-                                            <p className="text-lg text-gray-300">Clear { clear } times</p>
-                                            <p className="text-lg text-gray-300">{ totalIncome.toLocaleString('fr-FR') } golds generated</p>
-                                        </div>
-                                    </div>
+                        //             <div className="col-span-2">
+                        //                 <div className="flex justify-around items-center h-full">
+                        //                     <p className="text-lg text-gray-300">Clear { clear } times</p>
+                        //                     <p className="text-lg text-gray-300">{ totalIncome.toLocaleString('fr-FR') } golds generated</p>
+                        //                 </div>
+                        //             </div>
 
-                                    {!displayRaidPicture && (
-                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
-                                    )}
-                                </div>
-                            )
-                        }
+                        //             {!displayRaidPicture && (
+                        //                 <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
+                        //             )}
+                        //         </div>
+                        //     )
+                        // }
 
                         // tasks?.filter(task => task.idcategorie === raid.name).map((task, indext) => {
                         //     console.log('task', task)
