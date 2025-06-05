@@ -382,8 +382,8 @@ export default function Dashboard() {
                                     {daily.map((task, idx) => (
                                         <div key={idx} className='flex flex-row gap-2'>
                                             {Array.from({ length: getCategorieByName(task.idcategorie).completAllAtOnce ? 1 : (getCategorieByName(task.idcategorie).repet - task.done) }).map((_, imgIdx) => (
-                                                <li key={imgIdx} className="flex flex-row items-center gap-2 p-1 rounded-lg cursor-pointer border hover:text-gray-200 border-gray-700 text-gray-300 bg-gray-800 hover:bg-gray-700" onClick={() => handleTaskClick(task, perso)}>
-                                                    {task?.artisanatLifeEnergy} {task?.rest >= (getCategorieByName(task.idcategorie).maxRest / 5) ? task.rest : null} <img className="w-[40px]" src={getCategorieByName(task.idcategorie).logo} />
+                                                <li key={imgIdx} className={`flex flex-row items-center gap-2 p-1 rounded-lg cursor-pointer border hover:text-gray-200 text-gray-300 border-gray-700 ${(task?.artisanatLifeEnergy > 8000 || (task?.rest >= ((getCategorieByName(task.idcategorie).maxRest / 5) * 5))) ? 'bg-red-800 hover:bg-red-700' : (task?.artisanatLifeEnergy > 5000 || ((task?.rest >= ((getCategorieByName(task.idcategorie).maxRest / 5) * 3))) ? 'bg-orange-800 hover:bg-orange-700' : (task?.rest >= (getCategorieByName(task.idcategorie).maxRest / 5) ? 'bg-amber-600 hover:bg-amber-500' : 'bg-gray-800 hover:bg-gray-700'))} bg-gray-800 hover:bg-gray-700`} onClick={() => handleTaskClick(task, perso)}>
+                                                    {task?.artisanatLifeEnergy} {task?.rest >= (getCategorieByName(task.idcategorie).maxRest / 5) ? null : null} <img className="w-[40px]" src={getCategorieByName(task.idcategorie).logo} />
                                                 </li>
                                             ))}
                                         </div>
@@ -449,59 +449,62 @@ export default function Dashboard() {
 
                         if (tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length > 0) {
                             return (
-                                <div key={indexr} className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
-                                    <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}></div>
-                                    <div className="col-span-2 flex flex-col">
-                                        {
-                                            tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).map((task, indext) => {
+                                <div key={indexr}>
+                                    <div className='grid grid-cols-3 text-gray-400 border border-[#2e3643]'>
+                                        <div className="min-w-[6vw] min-h-[18vh] bg-cover bg-center" style={{ backgroundImage: `url(${raid.image})` }}><span className='ml-2 mt-6 text-xl text-gray-100'>{raid.name}</span></div>
+                                        <div className="col-span-2 flex flex-col">
+                                            {
+                                                tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).map((task, indext) => {
 
-                                                const p = getPersoByName(task.idperso);
-                                                const classe = getClasseByName(p.classe);
+                                                    const p = getPersoByName(task.idperso);
+                                                    const classe = getClasseByName(p.classe);
 
-                                                let chest = '';
+                                                    let chest = '';
 
-                                                //console.log(raid);
+                                                    //console.log(raid);
 
-                                                if (task.hasOwnProperty('coffreG1') && task.coffreG1) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-1"></i>' : '&nbsp;<i class="fa-solid fa-1"></i>';
-                                                if (task.hasOwnProperty('coffreG2') && task.coffreG2) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-2"></i>' : '&nbsp;<i class="fa-solid fa-2"></i>';
-                                                if (task.hasOwnProperty('coffreG3') && task.coffreG3) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-3"></i>' : '&nbsp;<i class="fa-solid fa-3"></i>';
-                                                if (task.hasOwnProperty('coffreG4') && task.coffreG4) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-4"></i>' : '&nbsp;<i class="fa-solid fa-4"></i>';
+                                                    if (task.hasOwnProperty('coffreG1') && task.coffreG1) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-1"></i>' : '&nbsp;<i class="fa-solid fa-1"></i>';
+                                                    if (task.hasOwnProperty('coffreG2') && task.coffreG2) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-2"></i>' : '&nbsp;<i class="fa-solid fa-2"></i>';
+                                                    if (task.hasOwnProperty('coffreG3') && task.coffreG3) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-3"></i>' : '&nbsp;<i class="fa-solid fa-3"></i>';
+                                                    if (task.hasOwnProperty('coffreG4') && task.coffreG4) chest += chest.length == 0 ? '<i class="fa-solid fa-gift"></i>&nbsp;<i class="fa-solid fa-4"></i>' : '&nbsp;<i class="fa-solid fa-4"></i>';
 
-                                                let gate = '';
+                                                    let gate = '';
 
-                                                for (let i = 1; i <= raid.repet; i++) {
-                                                    if (task.done < i) gate += gate.length == 0 ? `<i class="fa-solid fa-dungeon"></i>&nbsp;<i class="fa-solid fa-${i}"></i>` : `&nbsp;<i class="fa-solid fa-${i}"></i>`;
-                                                }
+                                                    for (let i = 1; i <= raid.repet; i++) {
+                                                        if (task.done < i) gate += gate.length == 0 ? `<i class="fa-solid fa-dungeon"></i>&nbsp;<i class="fa-solid fa-${i}"></i>` : `&nbsp;<i class="fa-solid fa-${i}"></i>`;
+                                                    }
 
-                                                return (
-                                                    <div key={indext} className={`grow grid grid-cols-6 ${indext > 0 ? 'border-t' : ''} border-[#2e3643] p-2`}>
-                                                        <div className="text-gray-300 content-center">
-                                                            <div>{task.idperso}</div>
-                                                            <div className='text-xs text-red-700'>{!task?.gold && p.goldEarner ? 'Uncheck golds' : ''}</div>
+                                                    return (
+                                                        <div key={indext} className={`grow grid grid-cols-6 ${indext > 0 ? 'border-t' : ''} border-[#2e3643] p-2`}>
+                                                            <div className="text-gray-300 content-center">
+                                                                <div>{task.idperso}</div>
+                                                                <div className='text-xs text-red-700'>{!task?.gold && p.goldEarner ? 'Uncheck golds' : ''}</div>
+                                                            </div>
+                                                            <div className="content-center">
+                                                                <div className='flex flex-row justify-between mr-6'><span>{p.classe}</span><span>{p.ilevel}</span></div>
+                                                            </div>
+                                                            <div className="content-center">
+                                                                <div>{classe.type}</div>
+                                                            </div>
+                                                            <div className="content-center">
+                                                                <div dangerouslySetInnerHTML={{ __html: chest }}></div>
+                                                            </div>
+                                                            <div className="content-center">
+                                                                <div dangerouslySetInnerHTML={{ __html: gate }}></div>
+                                                            </div>
+                                                            <div className="flex justify-end items-center gap-2">
+                                                                <button onClick={() => handleTaskClick(task, p, 'NM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.NM.ilevel && (!raid.HM || p.ilevel < raid.HM.ilevel) ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.NM.ilevel}</span> NM</button>
+                                                                {raid.HM && (
+                                                                    <button onClick={() => handleTaskClick(task, p, 'HM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.HM.ilevel ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.HM.ilevel}</span> HM</button>
+                                                                )}
+                                                            </div>
                                                         </div>
-                                                        <div className="content-center">
-                                                            <div className='flex flex-row justify-between mr-6'><span>{p.classe}</span><span>{p.ilevel}</span></div>
-                                                        </div>
-                                                        <div className="content-center">
-                                                            <div>{classe.type}</div>
-                                                        </div>
-                                                        <div className="content-center">
-                                                            <div dangerouslySetInnerHTML={{ __html: chest }}></div>
-                                                        </div>
-                                                        <div className="content-center">
-                                                            <div dangerouslySetInnerHTML={{ __html: gate }}></div>
-                                                        </div>
-                                                        <div className="flex justify-end items-center gap-2">
-                                                            <button onClick={() => handleTaskClick(task, p, 'NM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.NM.ilevel && (!raid.HM || p.ilevel < raid.HM.ilevel) ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.NM.ilevel}</span> NM</button>
-                                                            {raid.HM && (
-                                                                <button onClick={() => handleTaskClick(task, p, 'HM')} className={`px-2 py-1 rounded-lg border text-gray-300 hover:text-gray-200 whitespace-nowrap ${p.ilevel >= raid.HM.ilevel ? 'border-green-700 bg-green-800 hover:bg-green-700' : 'border-gray-700 bg-gray-800 hover:bg-gray-700'}`}><span className='text-sm text-gray-400'>{raid.HM.ilevel}</span> HM</button>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })
-                                        }
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                     </div>
+                                    <div className='h-4'></div>
                                 </div>
                             )
                         } 
