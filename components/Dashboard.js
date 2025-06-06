@@ -425,20 +425,24 @@ export default function Dashboard() {
                     <div key={index}>{perso.name}</div>
                 ))}
             </div>
-            {categories?.filter(categorie => categorie.groupe === 'raids').map((raid, indexr) => (
-                <div key={indexr} className={`grid text-gray-400 px-2 py-4 border-l border-r border-b border-[#2e3643] whitespace-nowrap`} style={{ gridTemplateColumns: `repeat(${2 + persos?.filter(p => p.name !== 'Roster' && tasks?.some(task => task.idperso === p.name && getCategorieByName(task.idcategorie).groupe === 'raids')).length}, minmax(0, 1fr))` }}>
-                    <div>{raid.name}</div>
-                    <div>{tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length}</div>
-                    {persos?.filter(perso => perso.name !== 'Roster' && tasks?.some(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'raids')).map((perso, index) => {
-                        const task = tasks?.find(task => task.idcategorie === raid.name && task.actif && task.idperso === perso.name);
-                        return (
-                            <div key={index} className={task && task.done >= raid.repet ? 'text-gray-600' : ''}>
-                                {task ? `${task.done}/${raid.repet}` : ''}
-                            </div>
-                        );
-                    })}
-                </div>
-            ))}
+            {categories?.filter(categorie => categorie.groupe === 'raids').map((raid, indexr) => {
+                if (tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length > 0) {
+                    return (
+                        <div key={indexr} className={`grid text-gray-400 px-2 py-4 border-l border-r border-b border-[#2e3643] whitespace-nowrap`} style={{ gridTemplateColumns: `repeat(${2 + persos?.filter(p => p.name !== 'Roster' && tasks?.some(task => task.idperso === p.name && getCategorieByName(task.idcategorie).groupe === 'raids')).length}, minmax(0, 1fr))` }}>
+                            <div>{raid.name}</div>
+                            <div>{tasks?.filter(task => task.idcategorie === raid.name && task.actif && task.done < raid.repet).length}</div>
+                            {persos?.filter(perso => perso.name !== 'Roster' && tasks?.some(task => task.idperso === perso.name && getCategorieByName(task.idcategorie).groupe === 'raids')).map((perso, index) => {
+                                const task = tasks?.find(task => task.idcategorie === raid.name && task.actif && task.idperso === perso.name);
+                                return (
+                                    <div key={index} className={task && task.done >= raid.repet ? 'text-gray-600' : ''}>
+                                        {task ? `${task.done}/${raid.repet}` : ''}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )
+                }
+            })}
 
             <div className='h-4'></div>
 
@@ -507,7 +511,7 @@ export default function Dashboard() {
                                     <div className='h-4'></div>
                                 </div>
                             )
-                        } 
+                        }
                         // else {
                         //     const clear = Math.floor(tasks
                         //         ?.filter(task => task.idcategorie === raid.name)
