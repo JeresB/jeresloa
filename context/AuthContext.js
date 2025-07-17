@@ -84,7 +84,7 @@ export function AuthProvider({ children }) {
                 }
 
                 setUserDataObj(firebaseUserData);
-
+                console.log(firebaseUserData);
 
                 const levelingDocRef = doc(db, 'users', user.uid, 'leveling', 'data');
                 const levelingDocSnap = await getDoc(levelingDocRef);
