@@ -54,12 +54,12 @@ export default function Leveling() {
                 }));
             }
 
-            if (JSON.stringify(userLevelingObj.categories) !== JSON.stringify(leveling_structure.categories)) {
-                 setUserLevelingObj(prevState => ({
-                     ...prevState,
-                     categories: leveling_structure.categories
-                 }));
-            }
+            // if (JSON.stringify(userLevelingObj.categories) !== JSON.stringify(leveling_structure.categories)) {
+            //     setUserLevelingObj(prevState => ({
+            //         ...prevState,
+            //         categories: leveling_structure.categories
+            //     }));
+            // }
         }
     }, [userLevelingObj, currentUser]);
 
