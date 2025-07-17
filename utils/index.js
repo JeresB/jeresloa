@@ -2008,7 +2008,7 @@ export const gold_types = [
     }
 ]
 
-export const leveling_structure = {
+/* export const leveling_structure = {
     "user": {
         "rank": 1,
         "level": 1,
@@ -2561,6 +2561,130 @@ export const leveling_structure = {
                         { "sub_level": 2, "required_reps": 10, "completed": false, "gain_xp": 40 },
                         { "sub_level": 3, "required_reps": 10, "completed": false, "gain_xp": 40 },
                         { "sub_level": 4, "required_reps": 10, "completed": false, "gain_xp": 40 }
+                    ]
+                }
+            ]
+        }
+    ]
+}; */
+
+export const leveling_structure = {
+    "user": {
+        "rank": 1,
+        "level": 1,
+        "experience_points": 0,
+        "daily_status": {
+            "actions_completed": [],
+            "actions_missed": [],
+            "date_last_reset": "2025-03-15"
+        }
+    },
+    "categories": [
+        {
+            "name": "Marche",
+            "levels": [
+                {
+                    "name": "Normal",
+                    "rank": "E",
+                    "type": "Marche",
+                    "color": "#ffffff",
+                    "xp_requis": 0,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 250, "completed": false, "gain_xp": 20 },
+                        { "sub_level": 2, "required_reps": 250, "completed": false, "gain_xp": 25 },
+                        { "sub_level": 3, "required_reps": 250, "completed": false, "gain_xp": 30 },
+                        { "sub_level": 4, "required_reps": 250, "completed": false, "gain_xp": 35 }
+                    ]
+                },
+                {
+                    "name": "Uncommon",
+                    "rank": "D",
+                    "type": "Marche",
+                    "color": "#8df901",
+                    "xp_requis": 4800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 250, "completed": false, "gain_xp": 40 },
+                        { "sub_level": 2, "required_reps": 250, "completed": false, "gain_xp": 45 },
+                        { "sub_level": 3, "required_reps": 250, "completed": false, "gain_xp": 50 },
+                        { "sub_level": 4, "required_reps": 250, "completed": false, "gain_xp": 55 }
+                    ]
+                },
+                {
+                    "name": "Rare",
+                    "rank": "C",
+                    "type": "Marche",
+                    "color": "#00b0fa",
+                    "xp_requis": 9600,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 250, "completed": false, "gain_xp": 60 },
+                        { "sub_level": 2, "required_reps": 250, "completed": false, "gain_xp": 65 },
+                        { "sub_level": 3, "required_reps": 250, "completed": false, "gain_xp": 70 },
+                        { "sub_level": 4, "required_reps": 250, "completed": false, "gain_xp": 75 }
+                    ]
+                },
+                {
+                    "name": "Epic",
+                    "rank": "B",
+                    "type": "Marche",
+                    "color": "#ba00f9",
+                    "xp_requis": 19200,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 250, "completed": false, "gain_xp": 80 },
+                        { "sub_level": 2, "required_reps": 250, "completed": false, "gain_xp": 85 },
+                        { "sub_level": 3, "required_reps": 250, "completed": false, "gain_xp": 90 },
+                        { "sub_level": 4, "required_reps": 250, "completed": false, "gain_xp": 95 }
+                    ]
+                },
+                {
+                    "name": "Legendary",
+                    "rank": "A",
+                    "type": "Marche",
+                    "color": "#f99200",
+                    "xp_requis": 28800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 500, "completed": false, "gain_xp": 105 },
+                        { "sub_level": 2, "required_reps": 500, "completed": false, "gain_xp": 115 },
+                        { "sub_level": 3, "required_reps": 500, "completed": false, "gain_xp": 125 },
+                        { "sub_level": 4, "required_reps": 500, "completed": false, "gain_xp": 135 }
+                    ]
+                },
+                {
+                    "name": "Relic",
+                    "rank": "S",
+                    "type": "Marche",
+                    "color": "#fa5d00",
+                    "xp_requis": 43200,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 500, "completed": false, "gain_xp": 145 },
+                        { "sub_level": 2, "required_reps": 500, "completed": false, "gain_xp": 155 },
+                        { "sub_level": 3, "required_reps": 500, "completed": false, "gain_xp": 165 },
+                        { "sub_level": 4, "required_reps": 500, "completed": false, "gain_xp": 175 }
+                    ]
+                },
+                {
+                    "name": "Ancient",
+                    "rank": "SS",
+                    "type": "Marche",
+                    "color": "#ddc29d",
+                    "xp_requis": 57600,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 1000, "completed": false, "gain_xp": 195 },
+                        { "sub_level": 2, "required_reps": 1000, "completed": false, "gain_xp": 215 },
+                        { "sub_level": 3, "required_reps": 1000, "completed": false, "gain_xp": 235 },
+                        { "sub_level": 4, "required_reps": 1000, "completed": false, "gain_xp": 255 }
+                    ]
+                },
+                {
+                    "name": "Sidereal",
+                    "rank": "SSS",
+                    "type": "Marche",
+                    "color": "#3cf2e6",
+                    "xp_requis": 76800,
+                    "sub_levels": [
+                        { "sub_level": 1, "required_reps": 1000, "completed": false, "gain_xp": 275 },
+                        { "sub_level": 2, "required_reps": 1000, "completed": false, "gain_xp": 295 },
+                        { "sub_level": 3, "required_reps": 1000, "completed": false, "gain_xp": 315 },
+                        { "sub_level": 4, "required_reps": 1000, "completed": false, "gain_xp": 350 }
                     ]
                 }
             ]
