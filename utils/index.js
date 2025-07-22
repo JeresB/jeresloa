@@ -1456,6 +1456,111 @@ export const categories = [
         ]
     },
     {
+        "idcategorie": "c_kurzan_frontline_dlm",
+        "name": "Kurzan Frontline DLM",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 2,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/chaos-dungeon.webp",
+        "image": "",
+        "maxRest": 200,
+        "bloodstonesGain": 220,
+        "horaire": [0, 1, 2],
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
+        "idcategorie": "c_kurzan_frontline_mjv",
+        "name": "Kurzan Frontline MJV",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 2,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/chaos-dungeon.webp",
+        "image": "",
+        "maxRest": 200,
+        "bloodstonesGain": 220,
+        "horaire": [3, 4, 5],
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
+        "idcategorie": "c_kurzan_frontline_jvs",
+        "name": "Kurzan Frontline JVS",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 2,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/chaos-dungeon.webp",
+        "image": "",
+        "maxRest": 200,
+        "bloodstonesGain": 220,
+        "horaire": [4, 5, 6],
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
+        "idcategorie": "c_kurzan_frontline_vsd",
+        "name": "Kurzan Frontline VSD",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 2,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/chaos-dungeon.webp",
+        "image": "",
+        "maxRest": 200,
+        "bloodstonesGain": 220,
+        "horaire": [5, 6, 0],
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
+        "idcategorie": "c_kurzan_frontline_sdl",
+        "name": "Kurzan Frontline SDL",
+        "reset": "daily",
+        "groupe": "daily",
+        "repet": 1,
+        "duration": 2,
+        "rested": true,
+        "completAllAtOnce": false,
+        "logo": "images/chaos-dungeon.webp",
+        "image": "",
+        "maxRest": 200,
+        "bloodstonesGain": 220,
+        "horaire": [6, 0, 1],
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_rest_input", "var": "rest", "name": "Rest" },
+            { "type": "number", "id": "tasksconfig_restNeeded_input", "var": "restNeeded", "name": "Rest Needed" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
         "idcategorie": "c_guilde_donation",
         "name": "Guilde",
         "reset": "daily",
