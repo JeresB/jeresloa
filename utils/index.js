@@ -1933,6 +1933,39 @@ export const categories = [
         ]
     },
     {
+        "idcategorie": "c_ebony_cube_1",
+        "name": "Ebony Cube x1",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 5,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/cubet4_1.webp",
+        "image": "",
+        "bloodstonesGain": 220,
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+        {
+        "idcategorie": "c_paradise",
+        "name": "Paradise",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 15,
+        "rested": false,
+        "completAllAtOnce": false,
+        "logo": "images/EchidnaWow.png",
+        "image": "",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
         "idcategorie": "c_pirate_shop",
         "name": "Pirate Shop",
         "reset": "weekly",
