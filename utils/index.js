@@ -1436,6 +1436,22 @@ export const categories = [
         ]
     },
     {
+        "idcategorie": "c_kurzan_frontline_chest",
+        "name": "Kurzan Frontline Chest",
+        "reset": "weekly",
+        "groupe": "weekly",
+        "repet": 1,
+        "duration": 1,
+        "rested": false,
+        "completAllAtOnce": true,
+        "logo": "images/chaos-dungeon.webp",
+        "image": "",
+        "inputs": [
+            { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
+            { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
+        ]
+    },
+    {
         "idcategorie": "c_kurzan_frontline",
         "name": "Kurzan Frontline",
         "reset": "daily",
