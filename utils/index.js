@@ -1446,6 +1446,7 @@ export const categories = [
         "completAllAtOnce": true,
         "logo": "images/chaos-dungeon.webp",
         "image": "",
+        "horaire": [5, 6, 7, 0, 1, 2],
         "inputs": [
             { "type": "list-persos", "id": "tasksconfig_perso_input", "var": "idperso", "name": "Perso" },
             { "type": "number", "id": "tasksconfig_count_input", "var": "count", "name": "Count" }
